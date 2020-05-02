@@ -218,7 +218,7 @@
 
         <!-- Invite Code / New Group Links -->
         <div v-else-if="active === 7" class="infoContainer">
-          <h3>Ваша класс был создан!</h3>
+          <h3>Ваш класс был создан!</h3>
           <div style="width: 50%; margin: 20px auto;" class="input-group">
             <input
               ref="inviteDisplay"
@@ -261,55 +261,58 @@
 </template>
 
 <script>
-import firebase, { db } from "@/firebaseConfig";
-import generateCode from "@/scripts/generateCode";
-import PageTitle from "@/components/navigation/PageTitle";
-import Steps from "@/components/create/Steps";
-import flatPickr from "vue-flatpickr-component";
-import "flatpickr/dist/flatpickr.css";
-import ConfirmDatePlugin from "flatpickr/dist/plugins/confirmDate/confirmDate.js";
-import "flatpickr/dist/plugins/confirmDate/confirmDate.css";
+import firebase, { db } from '@/firebaseConfig';
+import generateCode from '@/scripts/generateCode';
+import PageTitle from '@/components/navigation/PageTitle';
+import Steps from '@/components/create/Steps';
+import flatPickr from 'vue-flatpickr-component';
+import 'flatpickr/dist/flatpickr.css';
+import { Russian } from 'flatpickr/dist/l10n/ru';
+import ConfirmDatePlugin from 'flatpickr/dist/plugins/confirmDate/confirmDate.js';
+import 'flatpickr/dist/plugins/confirmDate/confirmDate.css';
 
 export default {
-  name: "CreateGroup",
+  name: 'CreateGroup',
   components: {
     PageTitle,
     flatPickr,
-    Steps
+    Steps,
   },
   data() {
     return {
       active: 0,
       config: {
-        dateFormat: "h:i K",
+        locale: Russian,
+        dateFormat: 'H:i',
+        time_24hr: true,
         enableTime: true,
         noCalendar: true,
-        plugins: [new ConfirmDatePlugin()]
+        plugins: [new ConfirmDatePlugin()],
       },
-      className: "",
-      courseCode: "",
-      instructorName: "",
-      location: "",
+      className: '',
+      courseCode: '',
+      instructorName: '',
+      location: '',
       hasWebsite: false,
-      websiteURL: "",
+      websiteURL: '',
       hasExtraInfo: false,
-      extraInfo: "",
+      extraInfo: '',
       meetingDays: {
         monday: false,
         tuesday: false,
         wednesday: false,
         thursday: false,
-        friday: false
+        friday: false,
       },
       meetingTime: [new Date(), new Date()],
-      inviteCode: "",
-      newGroupID: ""
+      inviteCode: '',
+      newGroupID: '',
     };
   },
   computed: {
     formattedURL() {
-      return "https://" + this.websiteURL;
-    }
+      return 'https://' + this.websiteURL;
+    },
   },
   methods: {
     toggle(key) {
@@ -324,11 +327,11 @@ export default {
     copyCode() {
       // Allows user to copy the invite code on button click
       this.$refs.inviteDisplay.select();
-      document.execCommand("copy");
+      document.execCommand('copy');
     },
     getDaysArray() {
       let arr = [];
-      Object.keys(this.meetingDays).forEach(key => {
+      Object.keys(this.meetingDays).forEach((key) => {
         if (this.meetingDays[key] === true) {
           arr.push(key.charAt(0).toUpperCase() + key.slice(1));
         }
@@ -339,7 +342,7 @@ export default {
       // Generate random invite code and save it
       this.inviteCode = generateCode();
       // Create new study group in the firestore
-      db.collection("study-groups")
+      db.collection('study-groups')
         .add({
           className: this.className,
           courseCode: this.courseCode,
@@ -348,27 +351,27 @@ export default {
           meetingTime: this.meetingTime,
           location: this.location,
           websiteURL:
-            this.websiteURL === "" ? "" : "https://" + this.websiteURL,
+            this.websiteURL === '' ? '' : 'https://' + this.websiteURL,
           extraInfo: this.extraInfo,
           owner: firebase.auth().currentUser.uid,
           members: [firebase.auth().currentUser.uid],
-          inviteCodes: [this.inviteCode]
+          inviteCodes: [this.inviteCode],
         })
-        .then(docRef => {
+        .then((docRef) => {
           this.newGroupID = docRef.id;
           this.next();
         })
         // Catch error when creating Study Group
-        .catch(error => {
-          console.log("CreateGroup: " + error);
+        .catch((error) => {
+          console.log('CreateGroup: ' + error);
         });
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles.scss";
+@import '@/styles.scss';
 
 #full-screen {
   height: $content-height;

@@ -4,10 +4,10 @@
       <template slot="left">
         <input
           v-model="deckTitle"
-          class="name-input"
+          class="form-input"
           type="text"
           maxlength="30"
-          placeholder="Untitled Flashcard Deck"
+          placeholder="Название колекции"
           @change="isSaved = false"
         />
       </template>
@@ -29,13 +29,13 @@
           @buttonClicked="deleteDeck"
         >
           <template v-slot:title>
-            Delete Flashcard Deck?
+            Удалить карточку?
           </template>
           <template v-slot:body>
-            The flashcard deck will be permanently deleted.
+            Эта карточка будет удалена.
           </template>
           <template v-slot:button-text>
-            Delete Deck
+            Удалить
           </template>
         </confirm-button>
       </template>
@@ -46,14 +46,14 @@
         class="btn btn-clear float-right"
         @click="noTitle = false"
       ></button>
-      Please Enter a title for the flashcard deck
+      Введите название колекции
     </div>
     <div v-if="!contentFilled" class="toast toast-error">
       <button
         class="btn btn-clear float-right"
         @click="contentFilled = true"
       ></button>
-      Please Enter term and definition for each flashcard
+      Введите имя и ответ для каждой карточки
     </div>
     <div v-if="!isLoading" class="page-content">
       <!-- maxlength="100" -->
@@ -70,7 +70,7 @@
       />
       <div class="addCard" @click="addCard">
         <h1 class="button-icon"><i class="fas fa-plus"></i></h1>
-        <h1>Add Card</h1>
+        <h1>Добавить</h1>
       </div>
     </div>
     <div v-else class="loading loading-lg"></div>
@@ -78,34 +78,34 @@
 </template>
 
 <script>
-import PageTitle from "@/components/navigation/PageTitle";
-import ToggleSwitch from "@/components/ToggleSwitch.vue";
-import FlashcardCreateForm from "@/components/flashcards/FlashcardCreateForm";
-import ConfirmButton from "@/components/ConfirmButton";
-import firebase, { db } from "@/firebaseConfig";
+import PageTitle from '@/components/navigation/PageTitle';
+import ToggleSwitch from '@/components/ToggleSwitch.vue';
+import FlashcardCreateForm from '@/components/flashcards/FlashcardCreateForm';
+import ConfirmButton from '@/components/ConfirmButton';
+import firebase, { db } from '@/firebaseConfig';
 
 export default {
-  name: "FlashcardCreate",
+  name: 'FlashcardCreate',
   components: {
     FlashcardCreateForm,
     PageTitle,
     ToggleSwitch,
-    ConfirmButton
+    ConfirmButton,
   },
   props: {
     deckID: {
       type: String,
       default: null,
-      required: false
+      required: false,
     },
     isPrivate: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   beforeRouteLeave(to, from, next) {
     if (!this.isSaved) {
-      if (confirm("Deck is not saved! Are you sure you want to leave?")) {
+      if (confirm('Deck is not saved! Are you sure you want to leave?')) {
         next();
       }
     } else {
@@ -117,12 +117,12 @@ export default {
       terms: [null],
       definitions: [null],
       hash: [new Date().getTime()], // Hash is used as a unique way to access each item.
-      deckTitle: "",
+      deckTitle: '',
       noTitle: false,
       contentFilled: true,
       toggled: false,
       isSaved: true,
-      isLoading: false
+      isLoading: false,
     };
   },
   created() {
@@ -141,16 +141,16 @@ export default {
       // Main flashcard collection route
       if (!this.toggled) {
         return db
-          .collection("study-groups")
+          .collection('study-groups')
           .doc(groupID)
-          .collection("flashcards")
-          .doc("private")
+          .collection('flashcards')
+          .doc('private')
           .collection(this.$store.getters.uid);
       } else {
         return db
-          .collection("study-groups")
+          .collection('study-groups')
           .doc(groupID)
-          .collection("flashcards");
+          .collection('flashcards');
       }
     },
     deleteCard(index) {
@@ -187,7 +187,7 @@ export default {
       let deck = this.getCollection().doc(this.deckID);
       deck
         .get()
-        .then(doc => {
+        .then((doc) => {
           if (doc.exists) {
             this.deckTitle = doc.data().title;
             this.terms = doc.data().terms;
@@ -198,7 +198,7 @@ export default {
         .then(() => {
           this.isLoading = false;
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     },
@@ -214,7 +214,7 @@ export default {
       }
 
       // Confirm that all fields are filled
-      if (this.deckTitle !== "" && this.contentFilled) {
+      if (this.deckTitle !== '' && this.contentFilled) {
         let flashcardCollection = this.getCollection();
 
         let user = firebase.auth().currentUser; // Used to get user's name
@@ -233,13 +233,13 @@ export default {
               lastUpdated: initDate,
               creatorPhoto: this.$store.getters.photoURL,
               downvotes: [],
-              upvotes: []
+              upvotes: [],
             })
             .then(() => {
               this.isSaved = true;
               this.$router.push(`/${this.$route.params.groupID}/flashcards`);
             })
-            .catch(error => {
+            .catch((error) => {
               // console.error("Error updating document: ", error);
             });
         } else {
@@ -256,27 +256,27 @@ export default {
               lastUpdated: initDate,
               creatorPhoto: this.$store.getters.photoURL,
               downvotes: [],
-              upvotes: []
+              upvotes: [],
             })
-            .then(docRef => {
-              console.log("Flashcard Deck created with doc id: ", docRef.id);
+            .then((docRef) => {
+              console.log('Flashcard Deck created with doc id: ', docRef.id);
               this.$router.push(`/${this.$route.params.groupID}/flashcards`);
               this.isSaved = true;
             })
-            .catch(error => {
+            .catch((error) => {
               // console.error("Error adding document: ", error);
             });
         }
       } else {
         this.noTitle = true;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles.scss";
+@import '@/styles.scss';
 
 .page-content {
   display: flex;

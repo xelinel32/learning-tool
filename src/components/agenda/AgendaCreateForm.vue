@@ -5,14 +5,14 @@
     <div class="horiz-tiles">
       <div class="tile t-left">
         <div class="tile-content text-left">
-          <div class="tile-title text-bold">Event Title</div>
+          <div class="tile-title text-bold">Название</div>
           <div class="tile-subtitle">
             <input
               id="title-input"
               v-model="item.title"
               type="text"
               maxlength="26"
-              placeholder="Enter Title"
+              placeholder="Введите название"
               @input="$emit('publish', item)"
             />
           </div>
@@ -21,7 +21,7 @@
 
       <div class="tile t-right">
         <div class="tile-content text-left">
-          <div class="tile-title text-bold">Event Date / Time</div>
+          <div class="tile-title text-bold">Дата / Время проведения</div>
           <div class="tile-subtitle date-time-container">
             <flat-pickr
               v-model="item.date"
@@ -36,7 +36,7 @@
 
     <div class="tile">
       <div class="tile-content text-left">
-        <div class="tile-title text-bold">Event Description</div>
+        <div class="tile-title text-bold">Описание</div>
         <div class="tile-subtitle">
           <textarea
             id="desc-input"
@@ -44,7 +44,7 @@
             v-model="item.description"
             rows="1"
             name="description"
-            placeholder="Enter Description"
+            placeholder="Введите описание события"
             @input="inputChanged"
           ></textarea>
         </div>
@@ -54,51 +54,52 @@
 </template>
 
 <script>
-import flatPickr from "vue-flatpickr-component";
-import "flatpickr/dist/flatpickr.css";
-// import "flatpickr/dist/themes/airbnb.css";
-import ConfirmDatePlugin from "flatpickr/dist/plugins/confirmDate/confirmDate.js";
-import "flatpickr/dist/plugins/confirmDate/confirmDate.css";
+import flatPickr from 'vue-flatpickr-component';
+import { Russian } from 'flatpickr/dist/l10n/ru';
+import 'flatpickr/dist/flatpickr.css';
+import ConfirmDatePlugin from 'flatpickr/dist/plugins/confirmDate/confirmDate.js';
+import 'flatpickr/dist/plugins/confirmDate/confirmDate.css';
 
 export default {
-  name: "AgendaCreateForm",
+  name: 'AgendaCreateForm',
   components: {
-    flatPickr
+    flatPickr,
   },
   props: {
     editItem: {
       type: Object,
       required: false,
-      default: null
-    }
+      default: null,
+    },
   },
   data() {
     return {
       // flatpickr configuration
       config: {
+        locale: Russian,
         minDate: Date.now(), // Disables all previous dates on the calendar.
-        dateFormat: "Z",
-        //  YYYY-MM-DDThh:mmTZD (eg 1997-07-16T19:20+01:00)
+        dateFormat: 'Y-m-d',
+        time_24hr: true,
         altInput: true,
-        altFormat: "F j, Y @ h:i K",
+        altFormat: 'F j, Y H:i',
         enableTime: true,
-        plugins: [new ConfirmDatePlugin()]
+        plugins: [new ConfirmDatePlugin()],
       },
       // New item's details
       item: {
-        title: "",
-        description: "",
-        date: null
-      }
+        title: '',
+        description: '',
+        date: null,
+      },
     };
   },
   computed: {
     getTitle() {
       if (this.editItem) {
-        return "Edit Existing Agenda Item";
+        return 'Изменить существующий ивент';
       }
-      return "Create New Agenda Item";
-    }
+      return 'Создание нового ивента';
+    },
   },
   created() {
     // Transfer all the prop data to the editable data if they are editing an existing event
@@ -112,17 +113,17 @@ export default {
   },
   methods: {
     inputChanged() {
-      this.$emit("publish", this.item);
+      this.$emit('publish', this.item);
       const textBox = this.$refs.descInput;
-      textBox.style.height = "1px";
-      textBox.style.height = textBox.scrollHeight + 1 + "px";
-    }
-  }
+      textBox.style.height = '1px';
+      textBox.style.height = textBox.scrollHeight + 1 + 'px';
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles.scss";
+@import '@/styles.scss';
 
 .agenda-form {
   background-color: white;

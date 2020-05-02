@@ -1,18 +1,17 @@
 <template>
   <div v-if="userAuthorized && !isLoading">
     <page-title>
-      <template slot="center">Study Group Admin Settings</template>
+      <template slot="center">Управление группой</template>
       <template slot="right" @buttonClicked="deleteGroup">
         <confirm-button>
           <template v-slot:title>
-            Delete Group?
+            Удалить группу?
           </template>
           <template v-slot:body>
-            This will delete the group and all of its content. Consider
-            transferring ownership and leaving instead.
+            Это удалить группу, всех участников и записи!
           </template>
           <template v-slot:button-text>
-            Yes, Delete the Group
+            Да, удалить мою группу
           </template>
         </confirm-button>
       </template>
@@ -22,7 +21,7 @@
       <div class="columns">
         <div class="column col-5 col-mx-auto col-xl-10">
           <div class="group-details">
-            <h2>Edit Group Details</h2>
+            <h2>Изменить информацию</h2>
 
             <form
               v-if="!loading.details"
@@ -32,46 +31,46 @@
               <!-- Class Name Input -->
               <div class="form-group">
                 <label class=" col-3 form-label" for="input-example-1"
-                  >Class Name</label
+                  >Название</label
                 >
                 <input
                   v-model="details.className"
                   class="col-9 form-input"
                   type="text"
-                  placeholder="Class Name"
+                  placeholder="Название группы"
                 />
               </div>
 
               <!-- Course Code Input (Optional) -->
               <div class="form-group">
                 <label class=" col-3 form-label" for="input-example-1"
-                  >Course Code</label
+                  >Код курса</label
                 >
                 <input
                   v-model="details.courseCode"
                   class="col-9 form-input"
                   type="text"
-                  placeholder="Course Code"
+                  placeholder="Код курса"
                 />
               </div>
 
               <!-- Class Instructor Input -->
               <div class="form-group">
                 <label class=" col-3 form-label" for="input-example-1"
-                  >Instructor Name</label
+                  >Руководитель</label
                 >
                 <input
                   v-model="details.instructorName"
                   class="col-9 form-input"
                   type="text"
-                  placeholder="Instructor Name"
+                  placeholder="Имя руководителя"
                 />
               </div>
 
               <!-- Class Meeting Location Input -->
               <div class="form-group">
                 <label class=" col-3 form-label" for="input-example-1"
-                  >Meeting Location</label
+                  >Прохождение</label
                 >
                 <input
                   v-model="details.location"
@@ -84,7 +83,7 @@
               <!-- Class Meeting Time Input -->
               <div class="form-group">
                 <label class=" col-3 form-label" for="input-example-1"
-                  >Meeting Time</label
+                  >Время</label
                 >
                 <div id="time-group" class="col-9">
                   <flat-pickr
@@ -94,7 +93,7 @@
                     style="margin-right: 10px;"
                     placeholder="Time"
                   />
-                  -
+                  <div class="time__separator">-</div>
                   <flat-pickr
                     v-model="details.meetingTime[1]"
                     :config="config"
@@ -108,7 +107,7 @@
               <!-- Meeting Days -->
               <div class="form-group day-selector">
                 <label class=" col-3 form-label" for="input-example-1"
-                  >Meeting Days</label
+                  >Дни курса</label
                 >
                 <div class="col-9 btn-group btn-group-block">
                   <button
@@ -116,35 +115,35 @@
                     class="btn btn-block"
                     @click.prevent="toggle('monday')"
                   >
-                    Mon
+                    Пн
                   </button>
                   <button
                     :class="details.meetingDays.tuesday ? 'active' : ''"
                     class="btn btn-block"
                     @click.prevent="toggle('tuesday')"
                   >
-                    Tue
+                    Вт
                   </button>
                   <button
                     :class="details.meetingDays.wednesday ? 'active' : ''"
                     class="btn btn-block"
                     @click.prevent="toggle('wednesday')"
                   >
-                    Wed
+                    Ср
                   </button>
                   <button
                     :class="details.meetingDays.thursday ? 'active' : ''"
                     class="btn btn-block"
                     @click.prevent="toggle('thursday')"
                   >
-                    Thu
+                    Чт
                   </button>
                   <button
                     :class="details.meetingDays.friday ? 'active' : ''"
                     class="btn btn-block"
                     @click.prevent="toggle('friday')"
                   >
-                    Fri
+                    Пт
                   </button>
                 </div>
               </div>
@@ -152,27 +151,27 @@
               <!-- Website URL (Optional) -->
               <div class="form-group">
                 <label class=" col-3 form-label" for="input-example-1"
-                  >Course Website</label
-                >
+                  >Веб-сайт
+                </label>
                 <input
                   v-model="details.url"
                   class="col-9 form-input"
                   type="url"
-                  placeholder="Optional Website URL"
+                  placeholder="веб-сайт руководителя"
                 />
               </div>
 
               <!-- Study Group Description (Optional-->
               <div class="form-group">
                 <label class=" col-3 form-label" for="input-example-1"
-                  >Group Description</label
+                  >Описание</label
                 >
                 <textarea
                   v-model="details.description"
                   class="col-9 form-input"
                   type="url"
-                  placeholder="Optional Description"
-                  style="resize: none;"
+                  placeholder="Описание"
+                  style="resize: none;height: 170px"
                 />
               </div>
             </form>
@@ -181,10 +180,10 @@
               <button
                 v-if="!loading.details"
                 id="save-btn"
-                class="btn btn-primary "
+                class="btn btn-success"
                 @click="saveData"
               >
-                Save Changes <i class="fas fa-save"></i>
+                Сохранить <i class="fas fa-save ml-1 text-light"></i>
               </button>
             </div>
           </div>
@@ -192,12 +191,12 @@
         <div class="column col-6 col-xl-12">
           <div class="columns">
             <div class="group-details column col-10 col-mx-auto">
-              <h2>Active Invite Codes</h2>
+              <h2>Активные коды приглашения</h2>
               <table v-if="!loading.codes" class="table table-hover">
                 <thead>
                   <tr>
-                    <th style="width: 95%;">Code</th>
-                    <th class="text-center">Revoke?</th>
+                    <th style="width: 95%;">Код</th>
+                    <th class="text-center">Отозвать?</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -217,12 +216,12 @@
               <div v-else class="loading loading-lg"></div>
             </div>
             <div class="group-details column col-10  col-mx-auto">
-              <h2>Study Group Members</h2>
+              <h2>Участники</h2>
               <table v-if="!loading.members" class="table table-hover">
                 <thead>
                   <tr>
-                    <th style="width: 95%;">Name</th>
-                    <th class="text-center">Remove?</th>
+                    <th style="width: 95%;">Имя</th>
+                    <th class="text-center">Удалить?</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -243,8 +242,8 @@
               <div v-else class="loading loading-lg"></div>
             </div>
             <div class="group-details column col-10  col-mx-auto">
-              <h2>Transfer Group Ownership</h2>
-              <p id="info">Choose another member to manage the Study Group.</p>
+              <h2>Передать группу</h2>
+              <p id="info">Выберите другого участника группы</p>
               <div v-if="!loading.members" class="transfer-group input-group">
                 <select v-model="selected" class="form-select">
                   <option
@@ -258,7 +257,7 @@
                   class="btn btn-primary input-group-btn"
                   @click="changeOwner"
                 >
-                  Transfer
+                  Передать
                 </button>
               </div>
               <div v-else class="loading loading-lg"></div>
@@ -269,70 +268,70 @@
     </div>
   </div>
 
-  <!-- TODO: Craft error landing page -->
-  <h1 v-else-if="!isLoading && !userAuthorized">WTF ARE YOU DOING HERE</h1>
+  <h1 v-else-if="!isLoading && !userAuthorized">Ошибка загрузки</h1>
   <div v-else class="loading loading-lg"></div>
 </template>
 
 <script>
-import { checkOwner } from "@/scripts/groupFuncs";
-import { db, FirebaseConsts } from "@/firebaseConfig";
-import PageTitle from "@/components/navigation/PageTitle";
-import ConfirmButton from "@/components/ConfirmButton";
-import flatPickr from "vue-flatpickr-component";
-import "flatpickr/dist/flatpickr.css";
+import { checkOwner } from '@/scripts/groupFuncs';
+import { db, FirebaseConsts } from '@/firebaseConfig';
+import PageTitle from '@/components/navigation/PageTitle';
+import ConfirmButton from '@/components/ConfirmButton';
+import flatPickr from 'vue-flatpickr-component';
+import 'flatpickr/dist/flatpickr.css';
 
 export default {
-  name: "GroupSettings",
+  name: 'GroupSettings',
   components: {
     ConfirmButton,
     PageTitle,
-    flatPickr
+    flatPickr,
   },
   data() {
     return {
       config: {
-        dateFormat: "h:i K",
+        dateFormat: 'H:i',
         enableTime: true,
-        noCalendar: true
+        time_24hr: true,
+        noCalendar: true,
       },
       isLoading: true,
       userAuthorized: false,
       loading: {
         details: true,
         codes: true,
-        members: true
+        members: true,
       },
       // Group Details Bindings
       details: {
-        className: "",
-        courseCode: "",
-        instructorName: "",
-        location: "",
+        className: '',
+        courseCode: '',
+        instructorName: '',
+        location: '',
         meetingTime: [],
         meetingDays: {
           monday: false,
           tuesday: false,
           wednesday: false,
           thursday: false,
-          friday: false
+          friday: false,
         },
-        url: "",
-        description: ""
+        url: '',
+        description: '',
       },
       inviteCodes: [],
       memberUID: [],
       memberDetails: [],
-      selected: ""
+      selected: '',
     };
   },
   computed: {
     // Returns the member's list without you
     membersWithoutYou() {
-      return this.memberDetails.filter(member => {
+      return this.memberDetails.filter((member) => {
         return member.uid !== this.$store.getters.uid;
       });
-    }
+    },
   },
   created() {
     this.checkAuth();
@@ -341,14 +340,14 @@ export default {
   methods: {
     deleteGroup() {
       // db.collection("study-groups").doc(this.$route.params.groupID).delete();
-      // TODO: Work out deletion logic to delete group and all subcollections
+      // Work out deletion logic to delete group and all subcollections
       // Have to manually find and delete subcollections
     },
     changeOwner() {
-      db.collection("study-groups")
+      db.collection('study-groups')
         .doc(this.$route.params.groupID)
         .update({
-          owner: this.selected
+          owner: this.selected,
         })
         .then(() => {
           this.$router.go(-1);
@@ -366,7 +365,7 @@ export default {
         });
     },
     saveData() {
-      db.collection("study-groups")
+      db.collection('study-groups')
         .doc(this.$route.params.groupID)
         .update({
           className: this.details.className,
@@ -376,20 +375,20 @@ export default {
           meetingTime: this.details.meetingTime,
           meetingDays: this.getDaysArray(this.details.meetingDays),
           websiteURL: this.details.url,
-          extraInfo: this.details.description
+          extraInfo: this.details.description,
         })
         .then(() => {
           this.$notify({
-            group: "save",
-            type: "success",
-            title: "Changes Saved",
-            text: "All details successfully saved!"
+            group: 'save',
+            type: 'success',
+            title: 'Changes Saved',
+            text: 'All details successfully saved!',
           });
         });
     },
     getDaysArray() {
       let arr = [];
-      Object.keys(this.details.meetingDays).forEach(key => {
+      Object.keys(this.details.meetingDays).forEach((key) => {
         if (this.details.meetingDays[key] === true) {
           arr.push(key.charAt(0).toUpperCase() + key.slice(1));
         }
@@ -399,10 +398,10 @@ export default {
     loadData() {
       // Get all data from firestore to populate the form
       this.loading;
-      db.collection("study-groups")
+      db.collection('study-groups')
         .doc(this.$route.params.groupID)
         .get()
-        .then(doc => {
+        .then((doc) => {
           this.loading.codes = false;
           this.loading.details = false;
           let data = doc.data();
@@ -414,7 +413,7 @@ export default {
             meetingTime: data.meetingTime,
             url: data.websiteURL,
             description: data.extraInfo,
-            meetingDays: this.parseDays(data.meetingDays)
+            meetingDays: this.parseDays(data.meetingDays),
           };
           this.memberUID = data.members;
           this.inviteCodes = data.inviteCodes;
@@ -422,12 +421,12 @@ export default {
         .then(() => {
           let counter = this.memberUID.length;
           this.memberDetails = [];
-          this.memberUID.forEach(uid => {
-            db.collection("users")
-              .where("uid", "==", uid)
+          this.memberUID.forEach((uid) => {
+            db.collection('users')
+              .where('uid', '==', uid)
               .limit(1)
               .get()
-              .then(docSnapshot => {
+              .then((docSnapshot) => {
                 if (docSnapshot.size == 1) {
                   counter--;
                   this.memberDetails.push(docSnapshot.docs[0].data());
@@ -438,51 +437,55 @@ export default {
               });
           });
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
         });
     },
     parseDays(days) {
       // Generate date object for the day picker from an array of day names
       let parsedDays = {};
-      days.forEach(element => {
+      days.forEach((element) => {
         parsedDays[element.toLowerCase()] = true;
       });
       return { ...this.details.meetingDays, ...parsedDays };
     },
     removeMember(uid) {
       // Remove a member from the study group
-      db.collection("study-groups")
+      db.collection('study-groups')
         .doc(this.$route.params.groupID)
         .update({
-          members: FirebaseConsts.firestore.FieldValue.arrayRemove(uid)
+          members: FirebaseConsts.firestore.FieldValue.arrayRemove(uid),
         });
-      this.memberDetails = this.memberDetails.filter(obj => {
+      this.memberDetails = this.memberDetails.filter((obj) => {
         return obj.uid !== uid;
       });
     },
     // Deactivate a study group invite code
     removeCode(code) {
-      db.collection("study-groups")
+      db.collection('study-groups')
         .doc(this.$route.params.groupID)
         .update({
-          inviteCodes: FirebaseConsts.firestore.FieldValue.arrayRemove(code)
+          inviteCodes: FirebaseConsts.firestore.FieldValue.arrayRemove(code),
         });
-      this.inviteCodes = this.inviteCodes.filter(obj => {
+      this.inviteCodes = this.inviteCodes.filter((obj) => {
         return obj !== code;
       });
     },
     // Toggle the day on or off (day selector buttons)
     toggle(key) {
       this.details.meetingDays[key] = !this.details.meetingDays[key];
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-@import "../styles";
+@import '../styles';
 
+.time__separator {
+  display: flex;
+  align-items: center;
+}
 #save-btn {
   margin: 20px 0 20px 0;
   i {
@@ -507,10 +510,11 @@ export default {
   justify-content: center;
 }
 .group-details {
-  cursor: pointer;
   padding: 0;
   background-color: white;
   margin-bottom: 40px;
+  border-radius: 10px;
+  transition: box-shadow 0.3s linear;
   h2 {
     font-family: $secondary-font;
     font-weight: 700;

@@ -10,17 +10,17 @@
         @click="
           $router.push({
             name: 'editFlashcards',
-            params: { deckID: info.id, isPrivate: isPrivate }
+            params: { deckID: info.id, isPrivate: isPrivate },
           })
         "
       >
-        Edit
+        Редакт.
       </button>
       <div
         v-if="info.creatorUID === $store.getters.uid"
         id="indicator"
         class="tooltip tooltip-bottom"
-        data-tooltip="Toggle Visibility"
+        data-tooltip="Скрыть / Показать"
         @click="$emit('toggle')"
       >
         <i class="far" :class="isPrivate ? 'fa-eye-slash' : 'fa-eye'"></i>
@@ -30,26 +30,26 @@
     <span id="title">{{ info.title }}</span>
     <!-- Created -->
     <p id="created">
-      <i>Created on</i> {{ info.creationDate.toDate().toLocaleDateString() }}
+      <i>Создан</i> {{ info.creationDate.toDate().toLocaleDateString() }}
     </p>
     <!-- Last Updated -->
     <p id="modified">
-      <i>Updated</i> {{ calcDays(info.lastUpdated.toDate()) }}
+      <i>Обновлен</i> {{ calcDays(info.lastUpdated.toDate()) }}
     </p>
     <!-- Color status indicator based on deck rating -->
     <div
       id="status"
       class="tooltip"
       :data-tooltip="
-        'Upvotes: ' +
+        'Понравилось: ' +
           this.info.upvotes.length +
-          ' Downvotes: ' +
+          ' / ' +
+          ' Не понравилось: ' +
           this.info.downvotes.length
       "
       :class="determineStatus()"
     ></div>
     <!-- Creator Avatar and Name Chip -->
-    <!-- TODO: Figure out how to use my existing avatar component -->
     <div class="chip text-ellipsis">
       <!-- Set background to transparent when there is an image. Fixes fuzzy outline  -->
       <img
@@ -59,52 +59,54 @@
       />
       {{ info.creatorName }}
     </div>
-    <div id="studyBtn" @click="goStudy">Study</div>
+    <div id="studyBtn" @click="goStudy">Учить</div>
   </div>
 </template>
 
 <script>
-import { distanceInWordsToNow } from "date-fns";
+import { distanceInWordsToNow } from 'date-fns';
 
 export default {
-  name: "FlashcardIcon",
+  name: 'FlashcardIcon',
   props: {
     info: {
       type: Object,
-      required: true
+      required: true,
     },
     isPrivate: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   methods: {
     determineStatus() {
       if (this.info.downvotes.length > this.info.upvotes.length) {
-        return "low-rating";
+        return 'low-rating';
       } else if (this.info.downvotes.length < this.info.upvotes.length) {
-        return "high-rating";
+        return 'high-rating';
       }
     },
     goStudy() {
       if (this.isPrivate) {
         this.$router.push({
-          name: "study",
-          params: { deckID: this.info.id, isPrivate: this.isPrivate }
+          name: 'study',
+          params: { deckID: this.info.id, isPrivate: this.isPrivate },
         });
       } else {
-        this.$router.push({ name: "study", params: { deckID: this.info.id } });
+        this.$router.push({ name: 'study', params: { deckID: this.info.id } });
       }
     },
     calcDays(date) {
-      return distanceInWordsToNow(date) + " ago";
-    }
-  }
+      const ruLocale = require('date-fns/locale/ru');
+      let locales = { locale: ruLocale };
+      return distanceInWordsToNow(date, locales) + ' назад';
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles.scss";
+@import '@/styles.scss';
 
 $card-width: 288px;
 $card-height: 230px;
@@ -140,9 +142,9 @@ $card-height: 230px;
 #title {
   font-family: $secondary-font;
   font-weight: 700;
-  font-size: 30px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  font-size: 20px;
+  line-height: 25px;
+  margin: 10px 0;
   max-width: $card-width;
   text-align: center;
 }

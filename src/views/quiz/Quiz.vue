@@ -7,21 +7,21 @@
           class="btn btn-primary"
           @click="showCorrect = true"
         >
-          Submit Quiz
+          Подтвердить
         </button>
         <button v-else class="btn btn-error" @click="$router.go(-1)">
-          Done
+          Завершить
         </button>
       </template>
       <template slot="center">
-        Quiz
+        Опрос
       </template>
       <template slot="right">
         <h2 v-if="showCorrect === false" class="title">
-          Answered: {{ answeredQuestions }}/{{ totalQuestions }}
+          Ответов: {{ answeredQuestions }}/{{ totalQuestions }}
         </h2>
         <h2 v-else class="title">
-          Score: {{ Math.round((correctQuestions / totalQuestions) * 100) }}%
+          Очков: {{ Math.round((correctQuestions / totalQuestions) * 100) }}%
           ({{ correctQuestions }} / {{ totalQuestions }})
         </h2>
       </template>
@@ -65,40 +65,40 @@
       <matching-question v-if="questionTypes.matching == true" />
     </div>
     <div v-else>
-      <h1>Error Loading Quiz</h1>
+      <h1>Ошибка загрузки</h1>
     </div>
   </div>
 </template>
 
 <script>
-import PageTitle from "@/components/navigation/PageTitle";
-import ShortAnswerQuestion from "@/components/quiz/questions/ShortAnswerQuestion";
-import MatchingQuestion from "@/components/quiz/questions/MatchingQuestion";
-import MultipleChoiceQuestion from "@/components/quiz/questions/MultipleChoiceQuestion";
-import DragDropQuestion from "@/components/quiz/questions/DragDropQuestion";
+import PageTitle from '@/components/navigation/PageTitle';
+import ShortAnswerQuestion from '@/components/quiz/questions/ShortAnswerQuestion';
+import MatchingQuestion from '@/components/quiz/questions/MatchingQuestion';
+import MultipleChoiceQuestion from '@/components/quiz/questions/MultipleChoiceQuestion';
+import DragDropQuestion from '@/components/quiz/questions/DragDropQuestion';
 
 export default {
-  name: "Quiz",
+  name: 'Quiz',
   components: {
     PageTitle,
     MatchingQuestion,
     ShortAnswerQuestion,
     DragDropQuestion,
-    MultipleChoiceQuestion
+    MultipleChoiceQuestion,
   },
   props: {
     terms: {
       type: Array,
-      required: true
+      required: true,
     },
     definitions: {
       type: Array,
-      required: true
+      required: true,
     },
     questionTypes: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -114,22 +114,22 @@ export default {
       questionGroups: {
         multipleChoice: {
           terms: [],
-          definitions: []
+          definitions: [],
         },
         shortAnswer: {
           terms: [],
-          definitions: []
+          definitions: [],
         },
         dragAndDrop: {
           terms: [],
-          definitions: []
-        }
-      }
+          definitions: [],
+        },
+      },
     };
   },
   created() {
     if (!this.terms && !this.definitions && !this.questionTypes) {
-      this.$router.push({ name: "createQuiz" });
+      this.$router.push({ name: 'createQuiz' });
     }
     this.shuffleAll();
     this.splitQuestions();
@@ -146,13 +146,13 @@ export default {
       console.log(this.totalQuestions);
 
       if (isCorrect && this.correctQuestions < this.totalQuestions) {
-        console.log("Question is correct. Incrementing...");
+        console.log('Question is correct. Incrementing...');
         this.correctQuestions++;
       } else if (!isCorrect && this.correctQuestions > 0) {
-        console.log("Question is incorrect. Decrementing");
+        console.log('Question is incorrect. Decrementing');
         this.correctQuestions--;
       } else {
-        console.log("There is an error in logic. Doing nothing.");
+        console.log('There is an error in logic. Doing nothing.');
       }
     },
     shuffleAll() {
@@ -160,18 +160,18 @@ export default {
         const j = Math.floor(Math.random() * (i + 1));
         [this.shuffledTerms[i], this.shuffledTerms[j]] = [
           this.shuffledTerms[j],
-          this.shuffledTerms[i]
+          this.shuffledTerms[i],
         ];
         [this.shuffledDefs[i], this.shuffledDefs[j]] = [
           this.shuffledDefs[j],
-          this.shuffledDefs[i]
+          this.shuffledDefs[i],
         ];
       }
     },
     splitQuestions() {
       // Count the number of different types to create
       let qTypeCount = 0;
-      Object.values(this.questionTypes).forEach(value => {
+      Object.values(this.questionTypes).forEach((value) => {
         if (value) {
           qTypeCount++;
         }
@@ -184,7 +184,7 @@ export default {
         ) {
           this.questionGroups.multipleChoice = {
             terms: this.shuffledTerms.slice(i, i + size),
-            definitions: this.shuffledDefs.slice(i, i + size)
+            definitions: this.shuffledDefs.slice(i, i + size),
           };
         } else if (
           this.questionTypes.shortAnswer &&
@@ -192,7 +192,7 @@ export default {
         ) {
           this.questionGroups.shortAnswer = {
             terms: this.shuffledTerms.slice(i, i + size),
-            definitions: this.shuffledDefs.slice(i, i + size)
+            definitions: this.shuffledDefs.slice(i, i + size),
           };
         } else if (
           this.questionTypes.dragAndDrop &&
@@ -207,17 +207,17 @@ export default {
           }
           this.questionGroups.dragAndDrop = {
             terms: terms,
-            definitions: defs
+            definitions: defs,
           };
         }
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles.scss";
+@import '@/styles.scss';
 
 #question {
   margin-top: 20px;

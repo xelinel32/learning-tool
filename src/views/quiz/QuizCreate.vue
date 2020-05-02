@@ -14,12 +14,12 @@
           "
           @click="loadQuiz()"
         >
-          Generate
-          <i class="fas fa-plus"></i>
+          Создать
+          <i class="fas fa-plus ml-2"></i>
         </button>
       </template>
       <template slot="center">
-        Create a New Quiz
+        Создать новый опрос
       </template>
       <template slot="right">
         <!-- Using the title class in the PageTitle component -->
@@ -27,11 +27,11 @@
       </template>
     </page-title>
     <div class="content-container">
-      <h3 id="step-instruction">Select Quiz Question Types</h3>
+      <h3 id="step-instruction">Выберите тип опроса</h3>
       <question-type-selector @selected="selectedQTypes = $event" />
 
-      <h3 id="step-instruction">Select Decks to Generate Your Quiz</h3>
-      <h5 id="step-hint">Quiz has a 100 card limit</h5>
+      <h3 id="step-instruction">Выберите карточки и создайте опрос</h3>
+      <h5 id="step-hint">Опрос имеет лимит в 100 карточек</h5>
       <!-- Component that displays checkboxes of each available flashcard deck -->
       <deck-selector :limit="100" @selected="selectedDecks = $event" />
     </div>

@@ -1,6 +1,6 @@
 <template>
   <div id="question">
-    <h1>Match each term to its definition</h1>
+    <h1>Сопоставьте с определением</h1>
     <!-- Terms Box -->
     <div id="terms-holder">
       <!-- Create draggable component for each term -->
@@ -34,7 +34,7 @@
       </div>
       <div id="right">
         <!-- Show all definitions -->
-        <h2 v-for="(slot, index) in drop" :key="index" :class="getStyle(slot)">
+        <h2 class="answer__item" v-for="(slot, index) in drop" :key="index" :class="getStyle(slot)">
           {{ slot.definition }}
         </h2>
       </div>
@@ -171,6 +171,9 @@ export default {
 h1 {
   margin: 0;
   font-size: 28px;
+}
+.answer__item{
+  font-size: 26px;
 }
 #terms-holder {
   padding: 10px;

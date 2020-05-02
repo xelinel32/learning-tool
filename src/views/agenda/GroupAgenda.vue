@@ -3,11 +3,11 @@
     <page-title>
       <template slot="left">
         <button class="btn btn-primary" @click="showCreateForm(true)">
-          Add Item <i class="fas fa-plus"></i>
+          Добавить <i class="fas fa-plus"></i>
         </button>
       </template>
       <template slot="center">
-        Group Agenda
+        Груповые ивенты
       </template>
       <template slot="right">
         <!-- Save Item Form Button -->
@@ -42,14 +42,14 @@
             @buttonClicked="deleteItem(selectedItem)"
           >
             <template v-slot:title>
-              Delete Agenda Item?
+              Удалить ивент?
             </template>
             <template v-slot:body>
-              The agenda item will be permanently deleted. Other members of the
-              group will no longer see it.
+              Ивент дня будет окончательно удален. Другие участники группы
+              больше не увидят его.
             </template>
             <template v-slot:button-text>
-              Delete Agenda Item
+              Удалить
             </template>
           </confirm-button>
         </div>
@@ -110,7 +110,7 @@
             />
           </div>
           <p class="empty-title h5">
-            Add an agenda item for the entire Study Group to see!
+            Добавьте новый дневной ивент и другие участники его увидят
           </p>
         </div>
 
@@ -127,7 +127,7 @@
             />
           </div>
           <p class="empty-title h5">
-            Select an item to see its details.
+            Выберите ивент и посмотрите его описание
           </p>
         </div>
       </div>
@@ -136,24 +136,24 @@
 </template>
 
 <script>
-import PageTitle from "@/components/navigation/PageTitle";
-import AgendaItem from "@/components/agenda/AgendaItem";
-import AgendaItemDateHeader from "@/components/agenda/AgendaItemDateHeader";
-import AgendaItemDetail from "@/components/agenda/AgendaItemDetail";
-import AgendaCreateForm from "@/components/agenda/AgendaCreateForm";
-import ConfirmButton from "@/components/ConfirmButton";
-import { parse, isSameDay } from "date-fns";
-import firebase, { db } from "@/firebaseConfig";
+import PageTitle from '@/components/navigation/PageTitle';
+import AgendaItem from '@/components/agenda/AgendaItem';
+import AgendaItemDateHeader from '@/components/agenda/AgendaItemDateHeader';
+import AgendaItemDetail from '@/components/agenda/AgendaItemDetail';
+import AgendaCreateForm from '@/components/agenda/AgendaCreateForm';
+import ConfirmButton from '@/components/ConfirmButton';
+import { parse, isSameDay } from 'date-fns';
+import firebase, { db } from '@/firebaseConfig';
 
 export default {
-  name: "GroupAgenda",
+  name: 'GroupAgenda',
   components: {
     ConfirmButton,
     PageTitle,
     AgendaItem,
     AgendaItemDateHeader,
     AgendaItemDetail,
-    AgendaCreateForm
+    AgendaCreateForm,
   },
   data() {
     return {
@@ -162,33 +162,33 @@ export default {
       selectedItem: null,
       agendaItems: [],
       selectedIndex: -1,
-      newItem: null
+      newItem: null,
     };
   },
   computed: {
     validInfoEntered() {
       if (
         this.newItem !== null &&
-        this.newItem.title !== "" &&
-        this.newItem.description !== "" &&
+        this.newItem.title !== '' &&
+        this.newItem.description !== '' &&
         this.newItem.date !== null
       ) {
         return true;
       } else {
         return false;
       }
-    }
+    },
   },
 
   created() {
     this.$bind(
-      "agendaItems",
+      'agendaItems',
       db
-        .collection("study-groups")
+        .collection('study-groups')
         .doc(this.$route.params.groupID)
-        .collection("agenda")
-        .orderBy("date", "asc")
-    ).then(agendaItems => {
+        .collection('agenda')
+        .orderBy('date', 'asc')
+    ).then((agendaItems) => {
       this.agendaItems === agendaItems;
       this.isLoadingItems = false;
       if (this.$route.params.itemID) {
@@ -236,9 +236,9 @@ export default {
       this.newItem = item;
     },
     deleteItem(item) {
-      db.collection("study-groups")
+      db.collection('study-groups')
         .doc(this.$route.params.groupID)
-        .collection("agenda")
+        .collection('agenda')
         .doc(item.id)
         .delete()
         .then(() => {
@@ -252,9 +252,9 @@ export default {
       let user = firebase.auth().currentUser;
 
       if (this.selectedItem === null && this.selectedIndex === -1) {
-        db.collection("study-groups")
+        db.collection('study-groups')
           .doc(this.$route.params.groupID)
-          .collection("agenda")
+          .collection('agenda')
           .add({
             title: this.newItem.title,
             description: this.newItem.description,
@@ -262,21 +262,21 @@ export default {
             creationDate: new Date(),
             creatorID: this.$store.getters.uid,
             creatorPhoto: this.$store.getters.photoURL,
-            creatorName: user.displayName
+            creatorName: user.displayName,
           })
           .then(() => {
             this.isShowingItemForm = false;
           });
       } else {
         // Update existing item
-        db.collection("study-groups")
+        db.collection('study-groups')
           .doc(this.$route.params.groupID)
-          .collection("agenda")
+          .collection('agenda')
           .doc(this.selectedItem.id)
           .update({
             title: this.newItem.title,
             description: this.newItem.description,
-            date: dateObj
+            date: dateObj,
           })
           .then(() => {
             this.isShowingItemForm = false;
@@ -284,13 +284,13 @@ export default {
             this.selectedIndex = -1;
           });
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles.scss";
+@import '@/styles.scss';
 
 #loading-indicator {
   height: 100%;

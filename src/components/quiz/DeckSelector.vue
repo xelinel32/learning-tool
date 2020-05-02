@@ -2,7 +2,7 @@
   <div>
     <!-- Only show if there are public decks -->
     <div v-if="publicDecks.length > 0">
-      <h5>Public Flashcard Decks</h5>
+      <h5>Публичные колекции вопросов</h5>
       <div id="container">
         <div
           v-for="deck in publicDecks"
@@ -27,7 +27,7 @@
     </div>
     <!-- Only show if there are private decks -->
     <div v-if="privateDecks.length > 0">
-      <h5>Private Flashcard Decks</h5>
+      <h5>Приватные колекции</h5>
       <div id="container">
         <div
           v-for="deck in privateDecks"
@@ -54,15 +54,15 @@
 </template>
 
 <script>
-import { db } from "@/firebaseConfig";
+import { db } from '@/firebaseConfig';
 
 export default {
-  name: "DeckSelector",
+  name: 'DeckSelector',
   props: {
     limit: {
       type: Number,
-      default: 100
-    }
+      default: 100,
+    },
   },
   data() {
     return {
@@ -70,47 +70,47 @@ export default {
       publicIsLoading: true,
       publicDecks: [],
       privateDecks: [],
-      totalSelected: 0
+      totalSelected: 0,
     };
   },
   created() {
     const groupID = this.$route.params.groupID;
     let publicCollection = db
-      .collection("study-groups")
+      .collection('study-groups')
       .doc(groupID)
-      .collection("flashcards");
+      .collection('flashcards');
 
     let privateCollection = db
-      .collection("study-groups")
+      .collection('study-groups')
       .doc(groupID)
-      .collection("flashcards")
-      .doc("private")
+      .collection('flashcards')
+      .doc('private')
       .collection(this.$store.getters.uid);
 
     publicCollection
       .get()
-      .then(querySnapshot => {
-        querySnapshot.forEach(doc => {
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
           this.publicDecks.push({ id: doc.id, selected: false, ...doc.data() });
         });
       })
       .catch(function(error) {
-        console.log("Error getting public decks: ", error);
+        console.log('Error getting public decks: ', error);
       });
 
     privateCollection
       .get()
-      .then(querySnapshot => {
-        querySnapshot.forEach(doc => {
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
           this.privateDecks.push({
             id: doc.id,
             selected: false,
-            ...doc.data()
+            ...doc.data(),
           });
         });
       })
       .catch(function(error) {
-        console.log("Error getting private decks: ", error);
+        console.log('Error getting private decks: ', error);
       });
   },
   methods: {
@@ -118,40 +118,40 @@ export default {
       if (!deck.selected) {
         if (this.totalSelected + deck.terms.length < this.limit) {
           deck.selected = true;
-          this.$emit("selected", this.getAllSelected());
+          this.$emit('selected', this.getAllSelected());
           this.totalSelected += deck.terms.length;
         } else {
-          console.log("Error: ", deck);
+          console.log('Error: ', deck);
         }
       } else {
         deck.selected = false;
-        this.$emit("selected", this.getAllSelected());
+        this.$emit('selected', this.getAllSelected());
         this.totalSelected -= deck.terms.length;
       }
     },
     getAllSelected() {
       let decks = { public: [], private: [] };
       // Returns an object containing the selected public and private deck ids
-      this.publicDecks.forEach(deck => {
+      this.publicDecks.forEach((deck) => {
         if (deck.selected) {
           decks.public.push(deck);
         }
       });
 
-      this.privateDecks.forEach(deck => {
+      this.privateDecks.forEach((deck) => {
         if (deck.selected) {
           decks.private.push(deck);
         }
       });
 
       return decks;
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles.scss";
+@import '@/styles.scss';
 
 #container {
   margin: 20px;

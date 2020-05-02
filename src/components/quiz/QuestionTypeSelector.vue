@@ -10,9 +10,6 @@
       >
         <div id="type-header">
           {{ type.type }}
-          <!-- <div id="type-description">
-            {{ type.description}}
-          </div> -->
         </div>
       </div>
     </div>
@@ -21,38 +18,38 @@
 
 <script>
 export default {
-  name: "QuestionTypeSelector",
+  name: 'QuestionTypeSelector',
   data() {
     return {
       questionTypes: [
         {
-          type: "Multiple Choice",
+          type: 'Несколько вариантов',
           description:
-            "Select correct term for the given definition from the given options",
-          selected: false
+            'Выберите правильный термин для данного определения из указанных вариантов',
+          selected: false,
         },
         // {
-        //   type: "Matching",
-        //   description: "Match the correct term to the given definition",
-        //   selected: false
+        //   type: 'Сопоставление',
+        //   description: 'Сопоставьте правильный термин с данным определением',
+        //   selected: false,
         // },
         {
-          type: "Drag and Drop",
-          description: "Drag the correct term to the given definition",
-          selected: false
+          type: 'Перетащите',
+          description: 'Перетащите правильный термин в данное определение',
+          selected: false,
         },
         {
-          type: "Short Answer",
-          description: "Type the correct term for the given definition",
-          selected: false
-        }
-      ]
+          type: 'Коротки ответ',
+          description: 'Введите правильный термин для данного определения',
+          selected: false,
+        },
+      ],
     };
   },
   methods: {
     toggleSelected(type) {
       type.selected = !type.selected;
-      this.$emit("selected", this.getAllSelected());
+      this.$emit('selected', this.getAllSelected());
     },
     getAllSelected() {
       // Create object to be passed to the quiz page
@@ -60,37 +57,37 @@ export default {
         matching: false,
         shortAnswer: false,
         multipleChoice: false,
-        dragAndDrop: false
+        dragAndDrop: false,
       };
       // Every selected type is set to true
-      this.questionTypes.forEach(type => {
+      this.questionTypes.forEach((type) => {
         if (type.selected === true) {
           switch (type.type) {
-            case "Multiple Choice":
+            case 'Несколько вариантов':
               selected.multipleChoice = true;
               break;
-            case "Matching":
+            case 'Сопоставление':
               selected.matching = true;
               break;
-            case "Drag and Drop":
+            case 'Перетащите':
               selected.dragAndDrop = true;
               break;
-            case "Short Answer":
+            case 'Коротки ответ':
               selected.shortAnswer = true;
               break;
             default:
-              console.log("error");
+              console.log('error');
           }
         }
       });
       return selected;
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles.scss";
+@import '@/styles.scss';
 
 #container {
   margin: 20px;

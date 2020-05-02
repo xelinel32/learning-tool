@@ -72,7 +72,6 @@ export default {
 @import '@/styles.scss';
 
 .profile-card {
-  cursor: pointer;
   height: 300px;
   width: 300px;
   margin: 0 20px 20px 0px;

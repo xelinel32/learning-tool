@@ -14,7 +14,7 @@
             :class="group.id == $route.params.groupID ? 'current-group' : ''"
           >
             <router-link
-              class="card-text "
+              class="card-text"
               :to="{ name: 'home', params: { groupID: group.id } }"
             >
               <p
@@ -23,14 +23,8 @@
               >
                 {{ group.className }}
               </p>
-              <p
-                id="instructorText"
-                class="card-text text-light text-italic"
-              >
+              <p id="instructorText" class="card-text text-light text-italic">
                 {{ group.instructorName }}
-              </p>
-              <p class="card-text text-ellipsis text-center">
-                {{ getTime(group.meetingTime[0]) }}
               </p>
             </router-link>
           </div>
@@ -47,18 +41,6 @@ export default {
     studyGroups: {
       type: Array,
       required: true,
-    },
-  },
-  methods: {
-    getTime(time) {
-      console.log(time);
-      try {
-        let hour = parseInt(time.split(':')[0]);
-        let minutes = time.split(':')[1];
-        return ((hour + 11) % 12) + 1 + ':' + minutes;
-      } catch (err) {
-        // console.log(err);
-      }
     },
   },
 };

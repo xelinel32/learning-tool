@@ -15,29 +15,29 @@
 import {
   isPast,
   distanceInWordsToNow,
-  differenceInCalendarDays
-} from "date-fns";
+  differenceInCalendarDays,
+} from 'date-fns';
 
 export default {
-  name: "AgendaItem",
+  name: 'AgendaItem',
   props: {
     item: {
       type: Object,
-      required: true
+      required: true,
     },
     selected: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
       isSelected: false,
       borderColors: {
-        close: "#cf4545",
-        medium: "#32b643",
-        far: "#dadee4"
-      }
+        close: '#cf4545',
+        medium: '#32b643',
+        far: '#dadee4',
+      },
     };
   },
   computed: {
@@ -61,23 +61,25 @@ export default {
         color = this.borderColors.far;
       }
       return {
-        borderColor: "" + color
+        borderColor: '' + color,
       };
-    }
+    },
   },
   methods: {
     getRemainingDays(date) {
+      const ruLocale = require('date-fns/locale/ru');
+      let locales = { locale: ruLocale };
       if (isPast(date)) {
-        return distanceInWordsToNow(date) + " ago";
+        return distanceInWordsToNow(date, locales) + ' спустя';
       }
-      return distanceInWordsToNow(date);
-    }
-  }
+      return distanceInWordsToNow(date, locales);
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles.scss";
+@import '@/styles.scss';
 
 .agenda-item {
   cursor: pointer;

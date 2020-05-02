@@ -5,13 +5,13 @@
     </span>
     <span
       id="deleteBtn"
-      class="icon icon-delete"
+      class="icon icon-delete c-hand"
       @click="$emit('delete')"
     ></span>
     <div id="container">
       <div class="term-container">
-        <label id="label-term" class="form-label">
-          Term
+        <label id="label-term" class="form-label text-primary">
+          Ответ
         </label>
         <textarea
           id="input-term"
@@ -22,13 +22,13 @@
           cols="34"
           maxlength="150"
           autofocus
-          placeholder="Enter Text"
+          placeholder="Введите ответ на вопрос"
           @input="termUpdated"
         />
       </div>
       <div class="def-container">
-        <label id="label-def" class="form-label">
-          Definition
+        <label id="label-def" class="form-label text-success">
+          Вопрос
         </label>
         <textarea
           id="input-def"
@@ -37,7 +37,7 @@
           type="text"
           rows="1"
           maxlength="150"
-          placeholder="Enter Text"
+          placeholder="Введите ваш вопрос"
           @input="defUpdated"
           @keydown.ctrl.enter="$emit('addNew')"
           @keydown.tab.exact="$emit('addNew')"
@@ -50,48 +50,48 @@
 
 <script>
 export default {
-  name: "FlashcardCreateForm",
+  name: 'FlashcardCreateForm',
   props: {
     initTerm: {
       type: String,
-      default: "",
-      required: false
+      default: '',
+      required: false,
     },
     initDef: {
       type: String,
-      default: "",
-      required: false
+      default: '',
+      required: false,
     },
-    initNum: Number
+    initNum: Number,
   },
   data() {
     return {
       data: {
         index: 0,
         term: this.initTerm,
-        def: this.initDef
-      }
+        def: this.initDef,
+      },
     };
   },
   methods: {
     termUpdated() {
-      this.$emit("termUpdated", this.data);
+      this.$emit('termUpdated', this.data);
       const textBox = this.$refs.termText;
-      textBox.style.height = "1px";
-      textBox.style.height = textBox.scrollHeight + 1 + "px";
+      textBox.style.height = '1px';
+      textBox.style.height = textBox.scrollHeight + 1 + 'px';
     },
     defUpdated() {
-      this.$emit("defUpdated", this.data);
+      this.$emit('defUpdated', this.data);
       const textBox = this.$refs.definitionText;
-      textBox.style.height = "1px";
-      textBox.style.height = textBox.scrollHeight + 1 + "px";
-    }
-  }
+      textBox.style.height = '1px';
+      textBox.style.height = textBox.scrollHeight + 1 + 'px';
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles.scss";
+@import '@/styles.scss';
 
 #form {
   background-color: white;

@@ -4,7 +4,8 @@
     <page-title>
       <template slot="left">
         <button
-          class="btn"
+          class="btn tooltip tooltip-right"
+          data-tooltip="Перетасовать"
           :class="isShuffled ? 'btn-success' : 'btn-action'"
           @click="shuffleDeck"
         >
@@ -86,23 +87,23 @@
 </template>
 
 <script>
-import PageTitle from "@/components/navigation/PageTitle";
-import { setTimeout } from "timers";
-import { db, FirebaseConsts } from "@/firebaseConfig";
-import anime from "animejs";
+import PageTitle from '@/components/navigation/PageTitle';
+import { setTimeout } from 'timers';
+import { db, FirebaseConsts } from '@/firebaseConfig';
+import anime from 'animejs';
 
 let flashcardCollection = null;
 
 export default {
-  name: "FlashcardStudy",
+  name: 'FlashcardStudy',
   components: {
-    PageTitle
+    PageTitle,
   },
   props: {
     isPrivate: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
@@ -115,26 +116,26 @@ export default {
       definitionList: [],
       originalTermList: [],
       originalDefinitionList: [],
-      cardColor: "#ffffff",
-      deckName: "",
+      cardColor: '#ffffff',
+      deckName: '',
       dataloaded: false,
       upvoteList: [],
       downvoteList: [],
-      myRating: 0
+      myRating: 0,
     };
   },
   created() {
     const groupID = this.$route.params.groupID;
     const deckID = this.$route.params.deckID;
     flashcardCollection = db
-      .collection("study-groups")
+      .collection('study-groups')
       .doc(groupID)
-      .collection("flashcards");
+      .collection('flashcards');
 
     // Load from different firestore location if the deck if public or private
     if (this.isPrivate) {
       flashcardCollection = flashcardCollection
-        .doc("private")
+        .doc('private')
         .collection(this.$store.getters.uid)
         .doc(deckID);
     } else {
@@ -144,7 +145,7 @@ export default {
     // Load deck from firebase
     flashcardCollection
       .get()
-      .then(doc => {
+      .then((doc) => {
         if (doc.exists) {
           this.deckName = doc.data().title;
           this.originalTermList = doc.data().terms;
@@ -161,15 +162,15 @@ export default {
           this.dataloaded = true;
         }
       })
-      .catch(error => {
-        console.log("Error getting document:", error);
+      .catch((error) => {
+        console.log('Error getting document:', error);
       });
   },
   beforeMount() {
-    window.addEventListener("keyup", this.keyPressed);
+    window.addEventListener('keyup', this.keyPressed);
   },
   beforeDestroy() {
-    window.removeEventListener("keyup", this.keyPressed);
+    window.removeEventListener('keyup', this.keyPressed);
   },
   methods: {
     determineRating() {
@@ -187,7 +188,7 @@ export default {
         flashcardCollection.update({
           upvotes: FirebaseConsts.firestore.FieldValue.arrayRemove(
             this.$store.getters.uid
-          )
+          ),
         });
         this.myRating = 0;
       } else {
@@ -196,7 +197,7 @@ export default {
           flashcardCollection.update({
             downvotes: FirebaseConsts.firestore.FieldValue.arrayRemove(
               this.$store.getters.uid
-            )
+            ),
           });
           this.myRating = 0;
         }
@@ -205,7 +206,7 @@ export default {
           flashcardCollection.update({
             upvotes: FirebaseConsts.firestore.FieldValue.arrayUnion(
               this.$store.getters.uid
-            )
+            ),
           });
           this.myRating = 1;
         }
@@ -217,7 +218,7 @@ export default {
         flashcardCollection.update({
           downvotes: FirebaseConsts.firestore.FieldValue.arrayRemove(
             this.$store.getters.uid
-          )
+          ),
         });
         this.myRating = 0;
       } else {
@@ -226,7 +227,7 @@ export default {
           flashcardCollection.update({
             upvotes: FirebaseConsts.firestore.FieldValue.arrayRemove(
               this.$store.getters.uid
-            )
+            ),
           });
           this.myRating = 0;
         }
@@ -235,7 +236,7 @@ export default {
           flashcardCollection.update({
             downvotes: FirebaseConsts.firestore.FieldValue.arrayUnion(
               this.$store.getters.uid
-            )
+            ),
           });
           this.myRating = -1;
         }
@@ -247,21 +248,21 @@ export default {
         this.isShuffled = false;
         this.termList = this.originalTermList.slice();
         this.definitionList = this.originalDefinitionList.slice();
-        console.log("back to original");
+        console.log('back to original');
       } else {
         // Otherwise use a shuffle algorithm on the lists
         for (let i = this.termList.length - 1; i > 0; i--) {
           const j = Math.floor(Math.random() * (i + 1));
           [this.termList[i], this.termList[j]] = [
             this.termList[j],
-            this.termList[i]
+            this.termList[i],
           ];
           [this.definitionList[i], this.definitionList[j]] = [
             this.definitionList[j],
-            this.definitionList[i]
+            this.definitionList[i],
           ];
         }
-        console.log("Shuffled");
+        console.log('Shuffled');
         this.isShuffled = true;
       }
       // Reset the study position
@@ -271,18 +272,18 @@ export default {
     //flips the current card
     flipCard() {
       anime({
-        targets: ".flashcard",
+        targets: '.flashcard',
         height: [
           { value: 0, duration: 150 },
-          { value: 300, duration: 150 }
-        ]
+          { value: 300, duration: 150 },
+        ],
       });
       anime({
-        targets: ".flashcard-content",
+        targets: '.flashcard-content',
         opacity: [
           { value: 0, duration: 150 },
-          { value: 1, duration: 150 }
-        ]
+          { value: 1, duration: 150 },
+        ],
       });
       const self = this;
       setTimeout(() => {
@@ -290,13 +291,13 @@ export default {
         if (self.flipped) {
           self.getCurrentContent();
           self.flipped = false;
-          self.cardColor = "#FFFFFF";
+          self.cardColor = '#FFFFFF';
         }
         //term side
         else {
           self.getCurrentContent();
           self.flipped = true;
-          self.cardColor = "#c5c5c5";
+          self.cardColor = '#c5c5c5';
         }
       }, 100);
     },
@@ -304,32 +305,32 @@ export default {
     nextCard() {
       if (this.cardIndex < this.termList.length - 1) {
         let nextAnimation = anime.timeline({
-          targets: ".flashcard",
-          easing: "linear",
-          duration: 100
+          targets: '.flashcard',
+          easing: 'linear',
+          duration: 100,
         });
         nextAnimation
           .add({
             rotate: -10,
             translateX: -200,
-            opacity: 0
+            opacity: 0,
           })
           .add({
             translateX: 200,
             opacity: 0,
-            duration: 1
+            duration: 1,
           })
           .add({
             translateX: 0,
             opacity: 1,
-            rotation: 0
+            rotation: 0,
           });
         this.cardIndex++;
         const self = this;
         setTimeout(() => {
           self.currentContent = self.termList[self.cardIndex];
           self.flipped = false;
-          self.cardColor = "#FFFFFF";
+          self.cardColor = '#FFFFFF';
         }, 110);
       } else {
         this.cardIndex = 0;
@@ -340,32 +341,32 @@ export default {
     prevCard() {
       if (this.cardIndex > 0) {
         let prevAnimation = anime.timeline({
-          targets: ".flashcard",
-          easing: "linear",
-          duration: 100
+          targets: '.flashcard',
+          easing: 'linear',
+          duration: 100,
         });
         prevAnimation
           .add({
             rotate: 10,
             translateX: 200,
-            opacity: 0
+            opacity: 0,
           })
           .add({
             translateX: -200,
             opacity: 0,
-            duration: 1
+            duration: 1,
           })
           .add({
             translateX: 0,
             opacity: 1,
-            rotation: 0
+            rotation: 0,
           });
         this.cardIndex--;
         const self = this;
         setTimeout(() => {
           self.flipped = false;
           self.currentContent = self.termList[self.cardIndex];
-          self.cardColor = "#FFFFFF";
+          self.cardColor = '#FFFFFF';
         }, 110);
       }
     },
@@ -393,13 +394,13 @@ export default {
           this.flipCard();
           break;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles.scss";
+@import '@/styles.scss';
 
 .page-content {
   height: $page-with-header-height;
@@ -428,9 +429,10 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: white;
-  width: 500px;
-  height: 300px;
+  background-color: #fff;
+  width: 700px;
+  min-height: 400px;
+  margin: 0 20px;
   box-shadow: $shadow-heavy;
 }
 .flashcard-content {

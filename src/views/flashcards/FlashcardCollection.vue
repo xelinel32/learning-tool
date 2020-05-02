@@ -6,17 +6,17 @@
           class="btn btn-primary"
           @click="$router.push(`/${$route.params.groupID}/flashcards/create`)"
         >
-          New Deck <i class="fas fa-plus"></i>
+          Добавить <i class="fas fa-plus ml-2"></i>
         </button>
       </template>
-      <template slot="center">Flashcard Collection</template>
+      <template slot="center">Коллекция карточек</template>
       <template slot="right">
         <div class="has-icon-left">
           <input
             v-model="searchQuery"
             type="search"
             class="search-input"
-            placeholder="Search by Title"
+            placeholder="Поиск"
           />
           <i class="form-icon fas fa-search"></i>
         </div>

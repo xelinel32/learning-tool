@@ -19,60 +19,60 @@
 
 <script>
 export default {
-  name: "Avatar",
+  name: 'Avatar',
   props: {
     user: {
       type: Object,
       required: false,
-      default: null
+      default: null,
     },
     color: {
       type: String,
-      default: "#f6f6f6"
+      default: '#f6f6f6',
     },
     size: {
       type: String,
-      default: ""
-    }
+      default: '',
+    },
   },
   computed: {
     computedInitials() {
       return this.user.displayName
-        .split(" ")
-        .map(word => {
+        .split(' ')
+        .map((word) => {
           return word[0];
         })
-        .join("");
+        .join('');
     },
     // Set size of the avatar icon
     getSize() {
       switch (this.size) {
-        case "":
-          return "";
-        case "sm":
-          return "avatar-sm";
-        case "lg":
-          return "avatar-lg";
-        case "xl":
-          return "avatar-xl";
+        case '':
+          return '';
+        case 'sm':
+          return 'avatar-sm';
+        case 'lg':
+          return 'avatar-lg';
+        case 'xl':
+          return 'avatar-xl';
       }
-      return "";
+      return '';
     },
     // Set the size of the corresponding loading indicator
     getLoadingSize() {
       switch (this.size) {
-        case "":
-          return "load";
-        case "sm":
-          return " load-sm";
-        case "lg":
-          return "loading-lg load-lg";
-        case "xl":
-          return "loading-lg load-xl";
+        case '':
+          return 'load';
+        case 'sm':
+          return ' load-sm';
+        case 'lg':
+          return 'loading-lg load-lg';
+        case 'xl':
+          return 'loading-lg load-xl';
       }
-      return "";
-    }
-  }
+      return '';
+    },
+  },
 };
 </script>
 
@@ -95,6 +95,10 @@ export default {
 .load-xl {
   height: 64px;
   width: 64px;
+}
+
+.avatar img {
+  z-index: 0;
 }
 
 figure.avatar {

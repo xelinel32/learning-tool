@@ -164,7 +164,7 @@ export default {
   height: $content-height;
   width: 0;
   position: absolute;
-  z-index: 0;
+  z-index: 1;
   top: $nav-height;
   right: 0;
   background-color: $dark;

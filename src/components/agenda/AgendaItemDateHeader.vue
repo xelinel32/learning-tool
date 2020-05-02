@@ -5,26 +5,28 @@
 </template>
 
 <script>
-import { format } from "date-fns";
+import { format } from 'date-fns';
 
 export default {
-  name: "AgendaItemDateHeader",
+  name: 'AgendaItemDateHeader',
   props: {
     date: {
       type: Date,
-      required: true
-    }
+      required: true,
+    },
   },
   methods: {
     dateHeader(date) {
-      return format(date, "dddd, MMMM Do");
-    }
-  }
+      const ruLocale = require('date-fns/locale/ru');
+      let locales = { locale: ruLocale };
+      return format(date, 'dddd, MMMM Do', locales).toUpperCase();
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles.scss";
+@import '@/styles.scss';
 
 .date-header {
   color: $dark;
