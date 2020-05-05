@@ -2,11 +2,7 @@
   <div v-if="user !== null" id="full-screen">
     <div class="welcome-msg">
       <span>Добрый день, {{ user.displayName }}!</span>
-      <p id="date">
-        сегодня {{ new Date().getMonth() + 1 }}.{{ new Date().getDate() }}.{{
-          new Date().getFullYear()
-        }}
-      </p>
+      <p id="date">сегодня {{ dateCurrent(date) }}</p>
       <create-join-popover></create-join-popover>
     </div>
     <!-- Centered Empty Dashboard Placeholder -->
@@ -52,6 +48,7 @@
 import { db } from '@/firebaseConfig';
 import { getUserData } from '@/scripts/userFuncs';
 import CreateJoinPopover from '@/components/navigation/CreateJoinPopover';
+import { format } from 'date-fns';
 
 export default {
   name: 'Dashboard',
@@ -64,6 +61,14 @@ export default {
       studyGroups: [],
       newGroupID: '',
     };
+  },
+  methods: {
+    dateCurrent() {
+      let date = new Date();
+      const ruLocale = require('date-fns/locale/ru');
+      let locales = { locale: ruLocale };
+      return format(date, 'HH:mm dddd, MMMM Do, YYYY' + ' год', locales);
+    },
   },
   created() {
     getUserData(this.$store.getters.uid)
