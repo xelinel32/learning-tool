@@ -80,7 +80,7 @@ export default {
         .where('members', 'array-contains', this.$store.getters.uid)
     ).then((studyGroups) => {
       this.studyGroups === studyGroups;
-      console.log(studyGroups);
+      // console.log(studyGroups);
     });
   },
 };
