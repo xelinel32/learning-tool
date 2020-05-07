@@ -419,7 +419,6 @@ p {
 }
 .landing {
   height: 100vh;
-  background: url('/img/land-bg.jpg') top center no-repeat;
   background-size: cover;
 }
 </style>

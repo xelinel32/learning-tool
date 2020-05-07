@@ -4,10 +4,12 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "animate.css": "^3.7.0",
+    "core-js": "3.6.4",
     "animejs": "^2.2.0",
     "date-fns": "^1.30.1",
     "firebase": "^7.9.3",
@@ -26,8 +28,15 @@
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.6.0",
+    "@vue/cli-plugin-eslint": "~4.3.0",
     "@vue/cli-plugin-pwa": "^3.6.0",
+    "@vue/cli-plugin-router": "~4.3.0",
+    "@vue/cli-plugin-vuex": "~4.3.0",
     "@vue/cli-service": "^3.6.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.2.2",
+    "lint-staged": "^9.5.0",
     "babel-core": "7.0.0-bridge.0",
     "node-sass": "^4.12.0",
     "sass-loader": "^8.0.2",
@@ -38,16 +47,32 @@
       "autoprefixer": {}
     }
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
     ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,vue}": [
+      "vue-cli-service lint",
+      "git add"
     ]
   }
 }
