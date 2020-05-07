@@ -2,7 +2,7 @@
   <div v-if="user !== null" id="full-screen">
     <div class="welcome-msg">
       <span>Добрый день, {{ user.displayName }}!</span>
-      <p id="date">сегодня {{ dateCurrent(date) }}</p>
+      <p id="date">сегодня {{ dateCurrent() }}</p>
       <create-join-popover></create-join-popover>
     </div>
     <!-- Centered Empty Dashboard Placeholder -->
@@ -60,11 +60,12 @@ export default {
       user: null,
       studyGroups: [],
       newGroupID: '',
+      date: new Date(),
     };
   },
   methods: {
     dateCurrent() {
-      let date = new Date();
+      const date = this.date;
       const ruLocale = require('date-fns/locale/ru');
       let locales = { locale: ruLocale };
       return format(date, 'HH:mm dddd, MMMM Do, YYYY' + ' год', locales);
@@ -85,7 +86,7 @@ export default {
         .where('members', 'array-contains', this.$store.getters.uid)
     ).then((studyGroups) => {
       this.studyGroups === studyGroups;
-      // console.log(studyGroups);
+      // console.log(this.studyGroups);
     });
   },
 };

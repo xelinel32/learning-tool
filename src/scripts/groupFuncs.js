@@ -17,7 +17,7 @@ function getGroupData(groupID) {
         if (doc.exists) {
           resolve({ id: doc.id, ...doc.data() });
         } else {
-          reject("Group not found.");
+          reject("Группа не найдена.");
         }
       });
   });

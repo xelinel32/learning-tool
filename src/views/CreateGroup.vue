@@ -334,6 +334,7 @@ export default {
       Object.keys(this.meetingDays).forEach((key) => {
         if (this.meetingDays[key] === true) {
           arr.push(key.charAt(0).toUpperCase() + key.slice(1));
+          // console.log(arr);
         }
       });
       return arr;
@@ -365,6 +366,7 @@ export default {
         .catch((error) => {
           console.log('CreateGroup: ' + error);
         });
+      console.log(this.meetingDays);
     },
   },
 };
