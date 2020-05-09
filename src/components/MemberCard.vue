@@ -103,6 +103,7 @@ export default {
   width: 300px;
   height: 200px;
   z-index: -1;
+  transition: box-shadow 0.3s linear;
 }
 .hoverable {
   border-image: $orange-gradient;
