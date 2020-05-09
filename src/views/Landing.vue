@@ -3,7 +3,9 @@
     <!-- Header Section -->
     <header class="navbar">
       <section class="navbar-section">
-        <span class="logo__name"><i class="fas fa-check"></i> Learning Tool</span>
+        <span class="logo__name"
+          ><i class="fas fa-check"></i> Learning Tool</span
+        >
       </section>
 
       <!-- Login Form -->
@@ -33,7 +35,7 @@
           class="form-input form-inline mx-1"
           autocomplete="off"
         />
-        <button id="loginButton" class="btn btn-primary m-1" @click="logIn">
+        <button id="loginButton" class="btn btn-success m-1" @click="logIn">
           Войти
         </button>
       </form>
@@ -254,6 +256,7 @@ export default {
         if (!result) {
           if (this.errors.first('signup.firstname')) {
             this.error.message = this.errors.first('signup.firstname');
+            console.log(this.error);
           } else if (this.errors.first('signup.lastname')) {
             this.error.message = this.errors.first('signup.lastname');
           } else if (this.errors.first('signup.email')) {
@@ -356,7 +359,7 @@ h1 {
 p {
   font-size: 1.5em;
 }
-.modal-footer{
+.modal-footer {
   display: flex;
   justify-content: center;
 }
@@ -403,7 +406,7 @@ p {
     color: #fff;
     font-family: $logo-font;
     margin-left: 25px;
-    i{
+    i {
       color: chartreuse;
     }
   }
@@ -419,6 +422,6 @@ p {
 }
 .landing {
   height: 100vh;
-  background-size: cover;
+  background: #ffffff;
 }
 </style>

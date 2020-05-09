@@ -12,11 +12,10 @@
         <a
           id="close"
           href="#close"
-          class="float-right"
+          class="btn btn-clear float-right"
           aria-label="Close"
           @click="closeAndReset"
         >
-          <i class="fas fa-times"></i>
         </a>
 
         <div class="modal-title h4">Настройки профиля</div>
@@ -107,10 +106,10 @@
                   v-model="reauth.password"
                   class="form-input"
                   type="password"
-                  placeholder="Current Password"
+                  placeholder="Ваш пароль"
                 />
                 <button class="btn btn-success" @click="reauthenticateUser">
-                  Вход
+                  OK
                 </button>
               </div>
             </div>
@@ -133,7 +132,7 @@
                   class="btn btn-success form-inline"
                   @click="updateEmail"
                 >
-                  Обновить
+                  Изменить
                 </button>
               </div>
             </div>
@@ -146,7 +145,7 @@
                   v-model="newCreds.password"
                   class="form-input"
                   type="password"
-                  placeholder="New Password"
+                  placeholder="Новый пароль"
                 />
 
                 <button class="btn btn-success" @click="updatePassword">
@@ -157,7 +156,7 @@
           </div>
           <div class="tile">
             <div class="tile-content text-left">
-              <div class="tile-title text-bold">
+              <div class="tile-title text-bold text-center">
                 Удалить профиль
               </div>
               <div class="tile-subtitle delete-container">
@@ -211,43 +210,44 @@
 </template>
 
 <script>
-import { getUserData, getUserGroups } from "@/scripts/userFuncs";
-import firebase, { FirebaseConsts, Storage, db } from "@/firebaseConfig";
+import { getUserData, getUserGroups } from '@/scripts/userFuncs';
+import firebase, { FirebaseConsts, Storage, db } from '@/firebaseConfig';
 
 let picRef = Storage.ref();
 
 export default {
-  name: "ProfileSettings",
+  name: 'ProfileSettings',
   props: {
     user: {
       type: Object,
-      default: null
+      default: null,
     },
     photoURL: {
       type: String,
-      default: ""
-    }
+      default: '',
+    },
   },
   data() {
     return {
       // Only show certain settings if not using google sign in
       isGoogleAccount: false,
+      studyGroups: [],
       didReauth: false,
       newCreds: {
-        email: "",
-        password: ""
+        email: '',
+        password: '',
       },
       reauth: {
-        password: ""
+        password: '',
       },
       activeTab: 1,
       profileDetails: {
-        newName: "",
+        newName: '',
         newPhoto: null,
-        newBio: ""
+        newBio: '',
       },
       groupList: [],
-      userBio: ""
+      userBio: '',
     };
   },
   watch: {
@@ -255,41 +255,56 @@ export default {
       if (newVal === 3) {
         this.loadGroups();
       }
-    }
+    },
   },
   beforeMount() {
     // Load the user's description from firestore
     getUserData(this.user.uid)
-      .then(user => {
+      .then((user) => {
         this.userBio = user.description;
       })
-      .catch(error => {
-        console.log("ProfileSettings: " + error);
+      .catch((error) => {
+        console.log('ProfileSettings: ' + error);
       });
 
     this.loadGroups();
 
-    this.user.providerData.forEach(profile => {
-      if (profile.providerId === "google.com") {
+    this.user.providerData.forEach((profile) => {
+      if (profile.providerId === 'google.com') {
         this.isGoogleAccount = true;
         this.didReauth = true;
       }
     });
   },
+  created() {
+    this.$bind(
+      'studyGroups',
+      db
+        .collection('study-groups')
+        .where('members', 'array-contains', this.$store.getters.uid)
+    ).then((studyGroups) => {
+      this.studyGroups === studyGroups;
+    });
+  },
   methods: {
-    deleteAccount() {
-      console.log("Deleting user account");
+    async deleteAccount(user) {
+      const userId = this.user.uid;
+      await firebase.auth().currentUser.delete();
+      await db
+        .collection('users')
+        .doc(userId)
+        .delete();
     },
     updateEmail() {
       this.user
         .updateEmail(this.newCreds.email)
         .then(function() {
           // Update successful.
-          console.log("Email updated");
+          console.log('Email updated');
         })
         .catch(function(error) {
           // An error happened.
-          console.log("Email update failure");
+          console.log('Email update failure');
         });
     },
 
@@ -298,11 +313,11 @@ export default {
         .updatePassword(this.newCreds.password)
         .then(function() {
           // Update successful.
-          console.log("Password updated");
+          console.log('Password updated');
         })
         .catch(function(error) {
           // An error happened.
-          console.log("Error updating password...");
+          console.log('Error updating password...');
         });
     },
     reauthenticateUser() {
@@ -318,67 +333,66 @@ export default {
         .reauthenticateAndRetrieveDataWithCredential(credential)
         .then(() => {
           // User re-authenticated.
-          console.log("Successful reauth");
+          console.log('Successful pass');
           this.didReauth = true;
         })
-        .catch(error => {
+        .catch((error) => {
           // An error happened.
-          console.log("ERROR BTW");
           console.log(error);
         });
     },
     closeAndReset() {
       this.activeTab = 1;
-      this.$emit("closeSettings");
+      this.$emit('closeSettings');
     },
     loadGroups() {
       getUserGroups(this.user.uid)
-        .then(groupList => {
+        .then((groupList) => {
           this.groupList = groupList;
         })
         // Catch group loading error
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
         });
     },
     leaveGroup(id) {
       // Remove the user from members list of specific study group
-      db.collection("study-groups")
+      db.collection('study-groups')
         .doc(id)
         .update({
           members: FirebaseConsts.firestore.FieldValue.arrayRemove(
             this.$store.getters.uid
-          )
+          ),
         });
       this.loadGroups();
-      this.$router.push({ name: "dashboard" });
+      this.$router.push({ name: 'dashboard' });
     },
     saveChanges() {
       if (this.activeTab === 1) {
         if (
           this.profileDetails.newName !== this.user.displayName &&
-          this.profileDetails.newName !== ""
+          this.profileDetails.newName !== ''
         ) {
           // Update the user's auth account
           this.user.updateProfile({
-            displayName: this.profileDetails.newName
+            displayName: this.profileDetails.newName,
           });
 
           // Update the firestore doc for the user
-          db.collection("users")
+          db.collection('users')
             .doc(this.$store.getters.uid)
             .update({
-              displayName: this.profileDetails.newName
+              displayName: this.profileDetails.newName,
             });
         }
 
         if (this.profileDetails.newPhoto !== null) {
           // Set metadata for image
           var metadata = {
-            contentType: "image/jpeg"
+            contentType: 'image/jpeg',
           };
 
-          let path = "profile-pictures/" + this.user.uid;
+          let path = 'profile-pictures/' + this.user.uid;
 
           // Upload new picture
           picRef
@@ -388,26 +402,26 @@ export default {
               picRef
                 .child(path)
                 .getDownloadURL()
-                .then(url => {
+                .then((url) => {
                   this.user.updateProfile({
-                    photoURL: url
+                    photoURL: url,
                   });
 
-                  db.collection("users")
+                  db.collection('users')
                     .doc(this.user.uid)
                     .update({
-                      photoURL: url
+                      photoURL: url,
                     });
                 });
             });
         }
 
         // Create new profile bio in firestore
-        if (this.profileDetails.newBio !== "") {
-          db.collection("users")
+        if (this.profileDetails.newBio !== '') {
+          db.collection('users')
             .doc(this.user.uid)
             .update({
-              description: this.profileDetails.newBio
+              description: this.profileDetails.newBio,
             });
         }
 
@@ -416,13 +430,13 @@ export default {
     },
     handleFile(event) {
       this.profileDetails.newPhoto = event.target.files[0];
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles.scss";
+@import '@/styles.scss';
 
 #input-button-container {
   display: flex;

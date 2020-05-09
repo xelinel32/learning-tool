@@ -172,6 +172,7 @@ export default {
     flex-flow: row nowrap;
     justify-content: center;
     align-items: center;
+    transition: box-shadow .3s linear;
     #deck-details {
       text-align: center;
       flex: 4;

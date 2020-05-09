@@ -1,6 +1,6 @@
 <template>
   <div id="question">
-    <h1>{{ definition }}</h1>
+    <h1>Вопрос: <span class="text-error">{{ definition }}</span></h1>
     <div class="choices" :class="getStyle()">
       <div v-for="i in 4" :key="i" class="answers">
         <input
@@ -104,7 +104,7 @@ export default {
 
 h1 {
   margin: 0;
-  font-size: 28px;
+  font-size: 24px;
 }
 .correct {
   border: 2px solid green;

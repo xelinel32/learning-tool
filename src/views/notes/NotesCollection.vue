@@ -22,7 +22,7 @@
           <input
             v-model="searchQuery"
             type="text"
-            class="search-input"
+            class="search-input form-input"
             placeholder="Поиск по названию"
           />
           <i class="form-icon fas fa-search"></i>
@@ -93,7 +93,7 @@ export default {
           title: "Untitled Note",
           creationDate: initDate,
           lastUpdated: initDate,
-          content: "# Тут можно написать заметку с Markdown syntax"
+          content: "#### Тут можно написать заметку с Markdown syntax"
         })
         .then(note => {
           // Get the note's ID and save it in the note itself.

@@ -29,7 +29,7 @@
       <h3 id="date">{{ getRemainingDays(selectedItem.date.toDate()) }}</h3>
     </div>
 
-    <div class="divider"></div>
+    <div class="divider bg-dark"></div>
     <h4 class="text-left">Описание:</h4>
     <p id="description">{{ selectedItem.description }}</p>
   </div>

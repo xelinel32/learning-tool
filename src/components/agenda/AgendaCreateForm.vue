@@ -8,7 +8,7 @@
           <div class="tile-title text-bold">Название</div>
           <div class="tile-subtitle">
             <input
-              id="title-input"
+              class="form-input"
               v-model="item.title"
               type="text"
               maxlength="26"
@@ -39,10 +39,10 @@
         <div class="tile-title text-bold">Описание</div>
         <div class="tile-subtitle">
           <textarea
-            id="desc-input"
+            class="form-input"
             ref="descInput"
             v-model="item.description"
-            rows="1"
+            rows="3"
             name="description"
             placeholder="Введите описание события"
             @input="inputChanged"

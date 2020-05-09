@@ -1,8 +1,8 @@
 <template>
   <div v-if="user !== null" id="full-screen">
     <div class="welcome-msg">
-      <span>Добрый день, {{ user.displayName }}!</span>
-      <p id="date">сегодня {{ dateCurrent() }}</p>
+      <span class="text-dark">Добрый день, {{ user.displayName }}!</span>
+      <p id="date" class="text-dark">сегодня {{ dateCurrent() }}</p>
       <create-join-popover></create-join-popover>
     </div>
     <!-- Centered Empty Dashboard Placeholder -->
@@ -30,7 +30,7 @@
             id="undraw"
             class="undraw-svg"
             src="@/assets/undraw_no_data.svg"
-            alt="No Study Groups"
+            alt="Нет групп"
           />
           <p class="empty-title h5 text-warning">
             У вас пока, что нет созданых групп 😞
@@ -93,7 +93,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../styles.scss';
+@import '@/styles.scss';
 
 .welcome-msg {
   font-size: 300%;
@@ -115,7 +115,7 @@ export default {
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: space-between;
-  background: $dashboard-gradient;
+  background: #fff;
   color: $secondary-light;
 }
 .empty {
@@ -142,6 +142,9 @@ export default {
   height: 150px;
   text-align: center;
   text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  border: 1px solid #000;
+  border-radius: 10px;
   #name {
     font-weight: bold;
     font-size: 125%;
@@ -154,6 +157,7 @@ export default {
   }
   &:hover {
     box-shadow: $shadow-heavy;
+    transform: scale(1.03);
   }
 }
 #group-header {

@@ -81,7 +81,7 @@
           />
         </div>
       </div>
-      <div class="divider-vert"></div>
+      <div class="divider-vert bg-dark"></div>
 
       <!-- Right side container -->
       <div class="item-detail-container">

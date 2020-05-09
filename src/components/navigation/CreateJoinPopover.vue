@@ -40,13 +40,11 @@
           </div>
         </div>
         <div class="modal-body">
-          <div class="text-uppercase h5 text-bold text-center text-dark">
-            Инструктор
+          <div class="h5 text-bold text-center text-dark">
+            Инструктор:
+            <span class="text-primary"> {{ inviteGroup.instructorName }}</span>
           </div>
-          <div class="text-center text-primary h5">
-            {{ inviteGroup.instructorName }}
-          </div>
-          <div class="text-uppercase h5 text-center text-bold text-dark">
+          <div class="h5 text-center text-bold text-dark">
             участников - {{ inviteGroup.members.length }}
           </div>
         </div>

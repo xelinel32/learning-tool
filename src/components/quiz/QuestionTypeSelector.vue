@@ -109,6 +109,7 @@ export default {
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
+    transition: box-shadow 0.3s linear;
     #type-header {
       text-align: center;
       font-family: $secondary-font;

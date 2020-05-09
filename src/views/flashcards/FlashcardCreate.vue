@@ -105,9 +105,7 @@ export default {
   },
   beforeRouteLeave(to, from, next) {
     if (!this.isSaved) {
-      if (confirm('Deck is not saved! Are you sure you want to leave?')) {
-        next();
-      }
+      next();
     } else {
       next();
     }

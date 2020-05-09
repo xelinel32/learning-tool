@@ -38,7 +38,7 @@
           </div>
         </div>
 
-        <div class="divider-vert"></div>
+        <div class="divider-vert bg-dark"></div>
 
         <!-- Displays recent notes and flashcards -->
         <div class="recent-container">
@@ -59,11 +59,11 @@
               />
             </div>
           </div>
-
+          <div class="divider bg-dark"></div>
           <!-- Displays the group's most popular flashcards -->
           <div class="flashcards-container">
             <div class="tile-header">
-              <h4>Недавние карточки</h4>
+              <h4>Недавние колекции</h4>
               <router-link :to="`/${$route.params.groupID}/flashcards/`"
                 >Все</router-link
               >
@@ -243,7 +243,6 @@ export default {
       height: 100%;
       padding: 0 20px 20px 20px;
       overflow: auto;
-      border-right: 2px solid #ff9f43;
       #loading-indicator {
         display: flex;
         flex-flow: column nowrap;
@@ -269,7 +268,6 @@ export default {
       max-width: 70%;
       .notes-container {
         flex: 1;
-        border-bottom: 2px solid #ff9f43;
       }
       .flashcards-container {
         flex: 1;
@@ -298,7 +296,8 @@ export default {
   padding: 8px;
   h4 {
     font-family: $secondary-font;
-    font-weight: 700;
+    font-weight: 600;
+    font-size: 18px;
   }
 }
 .loading.loading-lg {

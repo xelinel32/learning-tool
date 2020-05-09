@@ -127,7 +127,6 @@ $card-height: 230px;
 #flashcard {
   background-color: white;
   padding-top: 5px;
-
   min-height: $card-height;
   max-height: $card-height;
   min-width: $card-width;
@@ -135,6 +134,7 @@ $card-height: 230px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  transition: box-shadow 0.3s linear;
   &:hover {
     box-shadow: $shadow-hovered;
   }

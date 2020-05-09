@@ -5,7 +5,7 @@
       v-model="toggled"
       type="checkbox"
       @change="$emit('toggle', toggled)"
-    /><label for="switch">Toggle</label>
+    /><label for="switch">Переключить</label>
 
     <h4 v-if="values">{{ status }}</h4>
   </div>

@@ -16,12 +16,12 @@
         </confirm-button>
       </template>
     </page-title>
-    <notifications group="save" position="left top" />
+    <notifications group="save" class="m-2" position="right bottom" />
     <div class="container">
       <div class="columns">
         <div class="column col-5 col-mx-auto col-xl-10">
           <div class="group-details">
-            <h2>Изменить информацию</h2>
+            <h4>Изменить информацию</h4>
 
             <form
               v-if="!loading.details"
@@ -191,8 +191,11 @@
         <div class="column col-6 col-xl-12">
           <div class="columns">
             <div class="group-details column col-10 col-mx-auto">
-              <h2>Активные коды приглашения</h2>
-              <table v-if="!loading.codes" class="table table-hover">
+              <h4>Активные коды приглашения</h4>
+              <table
+                v-if="!loading.codes"
+                class="table table-striped table-hover"
+              >
                 <thead>
                   <tr>
                     <th style="width: 95%;">Код</th>
@@ -216,8 +219,11 @@
               <div v-else class="loading loading-lg"></div>
             </div>
             <div class="group-details column col-10  col-mx-auto">
-              <h2>Участники</h2>
-              <table v-if="!loading.members" class="table table-hover">
+              <h4>Участники</h4>
+              <table
+                v-if="!loading.members"
+                class="table table-striped table-hover"
+              >
                 <thead>
                   <tr>
                     <th style="width: 95%;">Имя</th>
@@ -242,7 +248,7 @@
               <div v-else class="loading loading-lg"></div>
             </div>
             <div class="group-details column col-10  col-mx-auto">
-              <h2>Передать группу</h2>
+              <h4>Передать группу</h4>
               <p id="info">Выберите другого участника группы</p>
               <div v-if="!loading.members" class="transfer-group input-group">
                 <select v-model="selected" class="form-select">
@@ -381,8 +387,8 @@ export default {
           this.$notify({
             group: 'save',
             type: 'success',
-            title: 'Changes Saved',
-            text: 'All details successfully saved!',
+            title: 'Изменения сохранены',
+            text: 'Все детали успешно сохранены',
           });
         });
     },
@@ -515,16 +521,17 @@ export default {
   margin-bottom: 40px;
   border-radius: 10px;
   transition: box-shadow 0.3s linear;
-  h2 {
+  h4 {
     font-family: $secondary-font;
     font-weight: 700;
     color: $secondary;
-    padding: 5px;
-    font-size: 32px;
+    padding: 5px 0;
+    font-size: 20px;
     background-image: none, $orange-gradient;
     background-size: 100% 1px;
     background-position: 0% 0%, 0% 100%;
     background-repeat: no-repeat;
+    padding: 10px 0;
   }
   &:hover {
     box-shadow: $shadow-hovered;

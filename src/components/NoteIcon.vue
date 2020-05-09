@@ -71,6 +71,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  transition: box-shadow .3s linear;
   &:hover {
     box-shadow: $shadow-hovered;
   }

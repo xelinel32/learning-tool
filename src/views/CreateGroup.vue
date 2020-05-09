@@ -10,7 +10,7 @@
       <div class="nav-container">
         <!-- Back Button -->
         <button
-          class="btn btn-action btn-success btn-lg"
+          class="btn btn-action btn-primary btn-lg"
           :class="active === 0 ? 'disabled c-not-allowed' : ''"
           @click="back"
         >
@@ -247,7 +247,7 @@
 
         <!-- Next Button -->
         <button
-          class="btn btn-action btn-success btn-lg"
+          class="btn btn-action btn-primary btn-lg"
           :class="active === 7 ? 'disabled' : ''"
           @click="next"
         >
@@ -404,20 +404,17 @@ button.btn-action {
   min-height: 400px;
   width: 800px;
   background-color: white;
-  &:hover {
-    box-shadow: $shadow-hovered;
-  }
 }
 .createBtn {
   cursor: pointer;
   background-color: $primary;
   box-shadow: $shadow;
-  width: 300px;
-  padding: 20px;
+  padding: 15px 30px;
   font-family: $logo-font;
-  font-size: 30px;
+  font-size: 24px;
   color: white;
   border: 0;
+  transition: box-shadow .3s ease;
   &:hover {
     box-shadow: $shadow-heavy;
   }

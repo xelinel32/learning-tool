@@ -1,84 +1,87 @@
 <template>
   <div id="question">
-    <h1>{{ definition }}</h1>
+    <h4>
+      Вопрос: <span class="text-error">{{ definition }}</span>
+    </h4>
     <input
       v-model.trim="userAnswer"
       class="answer-input"
       type="text"
       :class="getStyle()"
       @input="handleInput()"
+      placeholder="Напишите ответ"
     />
   </div>
 </template>
 
 <script>
 export default {
-  name: "ShortAnswerQuestion",
+  name: 'ShortAnswerQuestion',
   props: {
     term: {
       type: String,
-      required: true
+      required: true,
     },
     definition: {
       type: String,
-      required: true
+      required: true,
     },
     showCorrect: {
       type: Boolean,
       required: false,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
-      userAnswer: "",
+      userAnswer: '',
       correct: false,
-      answered: false
+      answered: false,
     };
   },
   methods: {
     getStyle() {
       if (this.showCorrect) {
         if (this.correct) {
-          return "correct";
+          return 'correct';
         } else {
-          return "incorrect";
+          return 'incorrect';
         }
       } else {
-        return "no-border";
+        return 'no-border';
       }
     },
     handleInput() {
       // Check if answered logic
-      if (!this.answered && this.userAnswer !== "") {
+      if (!this.answered && this.userAnswer !== '') {
         this.answered = true;
-        this.$emit("answered", true);
-      } else if (this.answered && this.userAnswer == "") {
+        this.$emit('answered', true);
+      } else if (this.answered && this.userAnswer == '') {
         this.answered = false;
-        this.$emit("answered", false);
+        this.$emit('answered', false);
       }
 
       // Check correct logic
       if (this.userAnswer.toLowerCase() === this.term.toLowerCase()) {
         this.correct = true;
-        this.$emit("correct", true);
+        this.$emit('correct', true);
       } else {
         if (this.correct) {
           this.correct = false;
-          this.$emit("correct", false);
+          this.$emit('correct', false);
         }
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles.scss";
+@import '@/styles.scss';
 
-h1 {
+h4 {
   margin: 0;
-  font-size: 28px;
+  font-size: 23px;
 }
 .correct {
   border: 2px solid green;
@@ -96,7 +99,7 @@ h1 {
   background-color: white;
   padding-left: 20px;
   padding-right: 20px;
-  font-size: 24px;
+  font-size: 20px;
   width: 400px;
   height: 50px;
   &:focus {

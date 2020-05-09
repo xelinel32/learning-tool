@@ -3,7 +3,6 @@
     <div class="sidebar" :class="show ? 'active' : 'collapsed'">
       <div class="content">
         <h3 id="header">Чат</h3>
-        <div class="divider-gradient mb-2"></div>
         <div ref="messages" class="messages">
           <transition-group
             name="chatTransition"
@@ -22,11 +21,11 @@
           v-model="userMessage"
           type="text"
           class="form-input message-input"
-          placeholder="Введите сообщение и нажмите Enter"
+          placeholder="Введите сообщение"
           @keydown.enter="sendMessage"
         />
         <button
-          class="btn btn-primary text-light c-hand"
+          class="btn btn-success text-light c-hand"
           :class="userMessage === '' ? 'disabled' : ''"
           @click="sendMessage"
         >
@@ -153,24 +152,26 @@ export default {
 #header {
   display: block;
   transition: 0.25s;
-  margin-bottom: 15px;
+  padding: 4px 0;
   font-family: $secondary-font;
   user-select: none;
-  font-size: 1.6em;
+  font-size: 18px;
   font-weight: 700;
+  color: $primary;
 }
 .sidebar {
   color: white;
-  height: $content-height;
+  height: calc(100% - 60px);
   width: 0;
   position: absolute;
-  z-index: 1;
-  top: $nav-height;
+  z-index: 2;
+  top: 60px;
   right: 0;
-  background-color: $dark;
+  background-color: #fff;
   overflow-x: hidden;
   transition: 0.25s;
   padding-top: 10px;
+  box-shadow: $shadow;
   .content {
     height: 100%;
     min-width: 300px;
@@ -179,10 +180,6 @@ export default {
     flex-direction: column;
     flex-wrap: nowrap;
   }
-}
-.divider-gradient {
-  background-image: $orange-gradient;
-  height: 1px;
 }
 .messages {
   flex: 5;

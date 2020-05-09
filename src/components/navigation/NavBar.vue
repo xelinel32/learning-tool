@@ -135,8 +135,7 @@ export default {
 }
 .navbar {
   background-color: $primary;
-  padding: 0px 10px 0px 10px;
-  height: $nav-height;
+  padding: 10px 15px;
 }
 a.navbar-brand {
   font-family: $logo-font;

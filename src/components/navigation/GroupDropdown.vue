@@ -59,9 +59,9 @@ export default {
   transition-timing-function: ease-in;
 }
 .group-menu {
-  background: transparent;
-  background-color: $transparent-dark;
   box-shadow: $shadow-heavy;
+  background-image: $orange-gradient;
+  border: 1px solid #000;
   max-width: 250px;
   min-width: 250px;
   margin-top: 4px;
@@ -70,18 +70,14 @@ export default {
 .group-card {
   width: 100%;
   max-width: 250px;
-  padding: 5px;
-  background-color: white;
+  padding: 2px;
   border: solid 2px white;
   transition: padding-top 0.1s, padding-bottom 0.1s;
   transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
   &:hover {
-    padding-top: 5%;
-    padding-bottom: 5%;
-
     #instructorText {
       font-size: 15px;
-      color: $dark;
+      color: #000;
     }
   }
   a {
@@ -103,7 +99,7 @@ export default {
 #group-button {
   background-color: $transparent-dark;
   color: white;
-  border: solid 2px $primary;
+  // border: solid 2px $primary;
   &:hover {
     background-color: white;
     color: $primary;

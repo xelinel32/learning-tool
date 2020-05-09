@@ -31,7 +31,7 @@
       <question-type-selector @selected="selectedQTypes = $event" />
 
       <h3 id="step-instruction">Выберите карточки и создайте опрос</h3>
-      <h5 id="step-hint">Опрос имеет лимит в 100 карточек</h5>
+      <h5 id="step-hint">(Опрос имеет лимит в 100 карточек)</h5>
       <!-- Component that displays checkboxes of each available flashcard deck -->
       <deck-selector :limit="100" @selected="selectedDecks = $event" />
     </div>
@@ -104,14 +104,16 @@ export default {
 @import "@/styles.scss";
 
 #step-instruction {
-  text-align: left;
+  text-align: center;
   padding-top: 20px;
-  margin: 0 20px 20px 20px;
+  margin: 0;
 }
 #step-hint {
-  text-align: left;
+  text-align: center;
   color: $secondary-light;
-  margin: 0 20px 20px 20px;
+  text-transform: lowercase;
+  margin-bottom: 20px;
+  font-size: 16px;
 }
 .content-container {
   height: $page-with-header-height;

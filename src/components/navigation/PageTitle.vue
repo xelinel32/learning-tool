@@ -31,7 +31,7 @@ export default {
 .header-container {
   padding: 4px 8px;
   background-color: white;
-  border-bottom: 2px solid #ff9f43;
+  border-bottom: 1px solid #a29bfe;
   font-family: $secondary-font;
   color: $dark;
   display: flex;
@@ -56,17 +56,13 @@ export default {
     }
   }
   .search-input {
-    border: none;
-    font-size: 18px;
-    min-width: 300px;
-    max-width: 300px;
+    font-size: 16px;
+    width: 300px;
     height: 36px;
     padding: 0 30px;
     font-weight: bold;
     font-family: $primary-font;
     font-weight: 400;
-    border-bottom: 1px solid $dark;
-    background-color: transparent;
     &:focus {
       outline: none;
     }
@@ -98,10 +94,11 @@ export default {
     justify-content: flex-end;
     .title {
       user-select: none;
-      font-size: 1.6em;
+      font-size: 20px;
       margin: 0;
       font-weight: 700;
       line-height: normal;
+      color: #000;
     }
   }
 }

@@ -91,6 +91,7 @@ export default {
   align-items: center;
   background-color: white;
   font-family: $secondary-font;
+  transition: all 0.3s ease-in-out;
   #days {
     color: $secondary-light;
   }

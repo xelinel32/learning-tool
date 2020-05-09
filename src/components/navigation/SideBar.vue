@@ -226,11 +226,11 @@ export default {
 }
 #sidebar {
   color: white;
-  height: $content-height;
+  height: calc(100% - 60px);
   width: 200px;
   position: absolute;
   z-index: 200;
-  top: $nav-height;
+  top: 60px;
   left: 0;
   background-color: #222f3e;
   transition: 0.25s;

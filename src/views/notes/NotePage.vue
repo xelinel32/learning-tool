@@ -1,6 +1,6 @@
 <template>
   <div v-if="!isLoading && !isError">
-    <notifications group="notes" position="left top" />
+    <notifications group="notes" class="m-2" position="right bottom" />
 
     <!-- New Header Component -->
     <page-title>
@@ -235,7 +235,7 @@ export default {
   resize: none;
 }
 .page-view {
-  padding: 20px 10px !important;
+  padding: 20px !important;
   box-shadow: $shadow-hovered;
   font-family: $primary-font;
   background-color: white;

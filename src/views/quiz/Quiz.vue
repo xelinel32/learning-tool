@@ -14,21 +14,21 @@
         </button>
       </template>
       <template slot="center">
-        Опрос
+        Викторина
       </template>
       <template slot="right">
-        <h2 v-if="showCorrect === false" class="title">
+        <h5 v-if="showCorrect === false" class="title">
           Ответов: {{ answeredQuestions }}/{{ totalQuestions }}
-        </h2>
+        </h5>
         <h2 v-else class="title">
-          Очков: {{ Math.round((correctQuestions / totalQuestions) * 100) }}%
+          Пройдено: {{ Math.round((correctQuestions / totalQuestions) * 100) }}%
           ({{ correctQuestions }} / {{ totalQuestions }})
         </h2>
       </template>
     </page-title>
 
     <div v-if="terms && definitions && questionTypes" class="quiz-content">
-      <div v-if="questionTypes.shortAnswer == true">
+      <div class="quiz__block" v-if="questionTypes.shortAnswer == true">
         <short-answer-question
           v-for="(term, index) in questionGroups.shortAnswer.terms"
           :key="index"
@@ -39,7 +39,7 @@
           @correct="handleCorrect"
         />
       </div>
-      <div v-if="questionTypes.multipleChoice == true">
+      <div class="quiz__block" v-if="questionTypes.multipleChoice == true">
         <multiple-choice-question
           v-for="(term, index) in questionGroups.multipleChoice.terms"
           :key="index"
@@ -51,7 +51,7 @@
           @correct="handleCorrect"
         />
       </div>
-      <div v-if="questionTypes.dragAndDrop == true">
+      <div class="quiz__block" v-if="questionTypes.dragAndDrop == true">
         <drag-drop-question
           v-for="(termArray, index) in questionGroups.dragAndDrop.terms"
           :key="index"
@@ -219,16 +219,14 @@ export default {
 <style lang="scss" scoped>
 @import '@/styles.scss';
 
-#question {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
 .quiz-content {
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: center;
-  max-height: $page-with-header-height;
-  overflow-y: auto;
+  height: 100%;
+  #question{
+    margin: 20px 0;
+  }
 }
 </style>
