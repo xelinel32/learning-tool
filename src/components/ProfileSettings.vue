@@ -264,7 +264,7 @@ export default {
         this.userBio = user.description;
       })
       .catch((error) => {
-        console.log('ProfileSettings: ' + error);
+        // console.log('ProfileSettings: ' + error);
       });
 
     this.loadGroups();
@@ -300,11 +300,11 @@ export default {
         .updateEmail(this.newCreds.email)
         .then(function() {
           // Update successful.
-          console.log('Email updated');
+          // console.log('Email updated');
         })
         .catch(function(error) {
           // An error happened.
-          console.log('Email update failure');
+          // console.log('Email update failure');
         });
     },
 
@@ -313,11 +313,11 @@ export default {
         .updatePassword(this.newCreds.password)
         .then(function() {
           // Update successful.
-          console.log('Password updated');
+          // console.log('Password updated');
         })
         .catch(function(error) {
           // An error happened.
-          console.log('Error updating password...');
+          // console.log('Error updating password...');
         });
     },
     reauthenticateUser() {
@@ -333,12 +333,12 @@ export default {
         .reauthenticateAndRetrieveDataWithCredential(credential)
         .then(() => {
           // User re-authenticated.
-          console.log('Successful pass');
+          // console.log('Successful pass');
           this.didReauth = true;
         })
         .catch((error) => {
           // An error happened.
-          console.log(error);
+          // console.log(error);
         });
     },
     closeAndReset() {
@@ -352,7 +352,7 @@ export default {
         })
         // Catch group loading error
         .catch((error) => {
-          console.log(error);
+          // console.log(error);
         });
     },
     leaveGroup(id) {
