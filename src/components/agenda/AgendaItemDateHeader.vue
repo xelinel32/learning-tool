@@ -19,7 +19,7 @@ export default {
     dateHeader(date) {
       const ruLocale = require('date-fns/locale/ru');
       let locales = { locale: ruLocale };
-      return format(date, 'dddd, MMMM Do', locales).toUpperCase();
+      return format(date, 'dddd, MMMM Do', locales).toLowerCase();
     },
   },
 };
