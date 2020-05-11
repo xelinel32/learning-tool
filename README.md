@@ -1,6 +1,6 @@
 # learning-tool
 
-Vue learning tool as diploma bachelor project
+Vue learning App as diploma bachelor project
 
 ```bash
 # install dependencies
