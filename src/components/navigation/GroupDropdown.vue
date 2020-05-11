@@ -1,7 +1,7 @@
 <template>
   <!-- Study Group Switcher -->
   <div v-if="studyGroups.length > 0" class="dropdown">
-    <a id="group-button" class="btn btn-lg dropdown-toggle" tabindex="0">
+    <a id="group-button" class="btn dropdown-toggle" tabindex="0">
       <i class="fas fa-caret-down"></i>
     </a>
 
@@ -99,7 +99,11 @@ export default {
 #group-button {
   background-color: $transparent-dark;
   color: white;
-  // border: solid 2px $primary;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   &:hover {
     background-color: white;
     color: $primary;
