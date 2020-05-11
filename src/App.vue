@@ -61,6 +61,7 @@ export default {
 };
 </script>
 <style lang="scss">
+// @import 'node_modules/reset-css/sass/reset.scss';
 @import '@/styles.scss';
 @import 'node_modules/animate.css/animate';
 @import 'node_modules/spectre.css/src/spectre.scss';
