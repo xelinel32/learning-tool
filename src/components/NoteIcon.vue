@@ -71,20 +71,20 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: box-shadow .3s linear;
+  transition: box-shadow 0.3s linear;
   &:hover {
     box-shadow: $shadow-hovered;
   }
 }
 #title {
-  text-align: center;
   font-family: $secondary-font;
   font-weight: 700;
   text-overflow: ellipsis;
   overflow: hidden;
-  padding-bottom: 30px;
-  max-width: 10em;
-  max-height: 5em;
+  padding-bottom: 10px;
+  font-size: 16px;
+  display: block;
+  text-align: center;
 }
 #created,
 #modified {
