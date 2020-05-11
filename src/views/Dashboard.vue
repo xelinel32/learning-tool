@@ -1,8 +1,8 @@
 <template>
   <div v-if="user !== null" id="full-screen">
     <div class="welcome-msg">
-      <span class="text-dark">Добрый день, {{ user.displayName }}!</span>
-      <p id="date" class="text-dark">сегодня {{ dateCurrent() }}</p>
+      <span class="text-dark d-block mb-2">Добрый день, {{ user.displayName }}!</span>
+      <p id="date" class="text-gray">сегодня {{ dateCurrent() }}</p>
       <create-join-popover></create-join-popover>
     </div>
     <!-- Centered Empty Dashboard Placeholder -->

@@ -32,7 +32,7 @@
             Удалить карточку?
           </template>
           <template v-slot:body>
-            Эта карточка будет удалена.
+            Эта колекция будет удалена.
           </template>
           <template v-slot:button-text>
             Удалить
@@ -257,7 +257,7 @@ export default {
               upvotes: [],
             })
             .then((docRef) => {
-              console.log('Flashcard Deck created with doc id: ', docRef.id);
+              // console.log('Flashcard Deck created with doc id: ', docRef.id);
               this.$router.push(`/${this.$route.params.groupID}/flashcards`);
               this.isSaved = true;
             })

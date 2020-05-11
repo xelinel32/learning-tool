@@ -248,7 +248,7 @@ export default {
         this.isShuffled = false;
         this.termList = this.originalTermList.slice();
         this.definitionList = this.originalDefinitionList.slice();
-        console.log('back to original');
+        // console.log('back to original');
       } else {
         // Otherwise use a shuffle algorithm on the lists
         for (let i = this.termList.length - 1; i > 0; i--) {
@@ -262,7 +262,7 @@ export default {
             this.definitionList[i],
           ];
         }
-        console.log('Shuffled');
+        // console.log('Shuffled');
         this.isShuffled = true;
       }
       // Reset the study position

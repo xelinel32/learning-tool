@@ -38,13 +38,13 @@
           </div>
         </div>
 
-        <div class="divider-vert bg-dark"></div>
+        <div class="divider-vert"></div>
 
         <!-- Displays recent notes and flashcards -->
         <div class="recent-container">
           <div class="notes-container">
             <div class="tile-header">
-              <h4>Недавние заметки</h4>
+              <h4>Недавние задания</h4>
               <router-link :to="`/${$route.params.groupID}/notes/`"
                 >Все</router-link
               >
@@ -59,11 +59,11 @@
               />
             </div>
           </div>
-          <div class="divider bg-dark"></div>
+          <div class="divider bg-success"></div>
           <!-- Displays the group's most popular flashcards -->
           <div class="flashcards-container">
             <div class="tile-header">
-              <h4>Недавние колекции</h4>
+              <h4>Недавние колекции вопросов</h4>
               <router-link :to="`/${$route.params.groupID}/flashcards/`"
                 >Все</router-link
               >
@@ -125,7 +125,7 @@ export default {
   methods: {
     // Switch the decks location in firebase to public or private
     changeVisibility(deck) {
-      console.log('test');
+      // console.log('test');
 
       let privateCol = db
         .collection('study-groups')

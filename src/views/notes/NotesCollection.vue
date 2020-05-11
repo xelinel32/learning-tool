@@ -10,12 +10,12 @@
             @keydown.enter="createNote"
             @click="createNote"
           >
-            Создать заметку
+            Создать
           </button>
         </div>
       </template>
       <template slot="center">
-        Мои заметки
+        Задания
       </template>
       <template slot="right">
         <div class="has-icon-left">
@@ -90,10 +90,10 @@ export default {
       notesRef
         .collection("private")
         .add({
-          title: "Untitled Note",
+          title: "Заполнить*",
           creationDate: initDate,
           lastUpdated: initDate,
-          content: "#### Тут можно написать заметку с Markdown syntax"
+          content: "#### Тут можно создать задачу"
         })
         .then(note => {
           // Get the note's ID and save it in the note itself.

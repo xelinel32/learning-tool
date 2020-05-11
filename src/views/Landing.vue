@@ -3,9 +3,7 @@
     <!-- Header Section -->
     <header class="navbar">
       <section class="navbar-section">
-        <span class="logo__name"
-          ><i class="fas fa-check"></i> Learning Tool</span
-        >
+        <span class="logo__name">Learning App</span>
       </section>
 
       <!-- Login Form -->
@@ -402,7 +400,7 @@ p {
 }
 .navbar-section {
   .logo__name {
-    font-size: 20px;
+    font-size: 24px;
     color: #fff;
     font-family: $logo-font;
     margin-left: 25px;

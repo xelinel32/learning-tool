@@ -19,7 +19,7 @@
             Удалить заметку?
           </template>
           <template v-slot:body>
-            Эта заметка будет немедленно удалена.
+            Эта задача будет немедленно удалена.
           </template>
           <template v-slot:button-text>
             Удалить
@@ -91,7 +91,7 @@ export default {
   },
   beforeRouteLeave(to, from, next) {
     if (!this.isSaved) {
-      if (confirm('Заметка не сохранена.Вы действитель хотите уйти?')) {
+      if (confirm('Задача не сохранена. Вы действитель хотите уйти?')) {
         next();
       }
     } else {
@@ -195,8 +195,8 @@ export default {
           this.$notify({
             group: 'notes',
             type: 'success',
-            title: 'Заметка сохранена!',
-            text: 'Эта заметка была сохранена.',
+            title: 'Задача сохранена!',
+            text: 'Эта задача была сохранена.',
           });
         });
     },

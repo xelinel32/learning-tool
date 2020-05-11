@@ -14,7 +14,7 @@
         </button>
       </template>
       <template slot="center">
-        Викторина
+        Тест
       </template>
       <template slot="right">
         <h5 v-if="showCorrect === false" class="title">
@@ -143,16 +143,16 @@ export default {
       }
     },
     handleCorrect(isCorrect) {
-      console.log(this.totalQuestions);
+      // console.log(this.totalQuestions);
 
       if (isCorrect && this.correctQuestions < this.totalQuestions) {
-        console.log('Question is correct. Incrementing...');
+        // console.log('Question is correct. Incrementing...');
         this.correctQuestions++;
       } else if (!isCorrect && this.correctQuestions > 0) {
-        console.log('Question is incorrect. Decrementing');
+        // console.log('Question is incorrect. Decrementing');
         this.correctQuestions--;
       } else {
-        console.log('There is an error in logic. Doing nothing.');
+        // console.log('There is an error in logic. Doing nothing.');
       }
     },
     shuffleAll() {

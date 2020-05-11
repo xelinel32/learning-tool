@@ -19,7 +19,7 @@
 
         <!-- Class Name Card -->
         <div v-if="active === 0" class="infoContainer">
-          <h2>Название класса</h2>
+          <h2>Название группы</h2>
           <div class="form-group">
             <input
               v-model="className"
@@ -31,7 +31,7 @@
               @keydown.enter="next"
             />
           </div>
-          <h3 style="margin-top: 20px;">Код курса?</h3>
+          <h3 style="margin-top: 20px;">Код курса?(не объязательно)</h3>
           <input
             v-model="courseCode"
             class="form-input"
@@ -125,7 +125,7 @@
 
         <!-- Class Meeting Location Form -->
         <div v-else-if="active === 3" class="infoContainer">
-          <h2>Место прохождения курсов (Адрес)</h2>
+          <h2>Место проведения курсов</h2>  
 
           <input
             v-model="location"
@@ -180,7 +180,7 @@
 
         <!-- Extra Group Info Form -->
         <div v-else-if="active === 5" class="infoContainer">
-          <h2>Хотите ли вы ввести дополнительную информацию?</h2>
+          <h2>Дополнительное описание</h2>
           <div class="form-group switch">
             <label class="form-switch">
               <input v-model="hasExtraInfo" type="checkbox" />
@@ -366,7 +366,7 @@ export default {
         .catch((error) => {
           console.log('CreateGroup: ' + error);
         });
-      console.log(this.meetingDays);
+      // console.log(this.meetingDays);
     },
   },
 };

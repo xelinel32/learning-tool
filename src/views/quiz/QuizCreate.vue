@@ -19,7 +19,7 @@
         </button>
       </template>
       <template slot="center">
-        Создать новый опрос
+        Пройти тест
       </template>
       <template slot="right">
         <!-- Using the title class in the PageTitle component -->
@@ -27,11 +27,11 @@
       </template>
     </page-title>
     <div class="content-container">
-      <h3 id="step-instruction">Выберите тип опроса</h3>
+      <h3 id="step-instruction">Выберите тип тестов</h3>
       <question-type-selector @selected="selectedQTypes = $event" />
 
-      <h3 id="step-instruction">Выберите карточки и создайте опрос</h3>
-      <h5 id="step-hint">(Опрос имеет лимит в 100 карточек)</h5>
+      <h3 id="step-instruction">Выберите карточки и пройдите тест</h3>
+      <h5 id="step-hint">(тесты имеют лимит в 100 карточек)</h5>
       <!-- Component that displays checkboxes of each available flashcard deck -->
       <deck-selector :limit="100" @selected="selectedDecks = $event" />
     </div>
