@@ -57,7 +57,7 @@
                 : ''
             "
             ><i :class="{ 'large-icon': !show }" class="fas fa-pencil-alt"></i>
-            <span v-show="show"> Вопросы</span>
+            <span v-show="show"> Тесты</span>
           </router-link>
         </li>
 
@@ -70,7 +70,7 @@
               :class="{ 'large-icon': !show }"
               class="fas fa-calendar-alt"
             ></i>
-            <span v-show="show"> Ивенты</span>
+            <span v-show="show"> События</span>
           </router-link>
         </li>
 
@@ -87,7 +87,7 @@
             "
           >
             <i :class="{ 'large-icon': !show }" class="fas fa-file"></i>
-            <span v-show="show"> Заметки</span>
+            <span v-show="show"> Задания</span>
           </router-link>
         </li>
 
