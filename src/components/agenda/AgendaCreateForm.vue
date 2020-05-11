@@ -39,12 +39,12 @@
         <div class="tile-title text-bold">Описание</div>
         <div class="tile-subtitle">
           <textarea
-            class="form-input"
+            class="form-input form__textarea"
             ref="descInput"
             v-model="item.description"
-            rows="3"
+            rows="4"
             name="description"
-            placeholder="Введите описание события"
+            placeholder="Введите описание"
             @input="inputChanged"
           ></textarea>
         </div>
@@ -141,6 +141,9 @@ textarea {
   &:focus {
     outline: none;
   }
+}
+.form__textarea {
+  height: 120px !important;
 }
 .horiz-tiles {
   display: flex;
