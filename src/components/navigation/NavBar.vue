@@ -2,8 +2,7 @@
   <header class="navbar">
     <section class="navbar-section">
       <router-link class="navbar-brand" to="/dashboard">
-        <i class="fas fa-check text-success"></i>
-        <h1>Learning Tool</h1>
+        <h1 class="text-light">Learning App</h1>
       </router-link>
 
       <group-dropdown :study-groups="studyGroups" />
@@ -37,7 +36,7 @@
 
         <ul v-show="menuActive == true" class="menu settings-menu">
           <li class="menu-item text-left">
-            <p v-if="user" class="h5 text-center text-ellipsis">
+            <p v-if="user" class="text-left text-ellipsis">
               {{ user.displayName }}
             </p>
           </li>
@@ -46,7 +45,7 @@
           <li class="menu-item text-left">
             <a
               id="settings"
-              class="text-center c-pointer"
+              class="text-left c-pointer"
               @click="isSettingsActive = true"
             >
               <i class="fas fa-cog" style="margin-right: 10px;"></i> Настройки
@@ -55,7 +54,7 @@
 
           <!-- Log Out Button -->
           <li class="menu-item text-left">
-            <a id="logOutButton" class="text-center" @click="logOut">
+            <a id="logOutButton" class="text-left" @click="logOut">
               <i class="fas fa-sign-out-alt" style="margin-right: 10px;"></i>
               Выйти
             </a>
@@ -135,7 +134,7 @@ export default {
 }
 .navbar {
   background-color: $primary;
-  padding: 10px 15px;
+  padding: 12px 15px;
 }
 a.navbar-brand {
   font-family: $logo-font;
@@ -146,6 +145,7 @@ a.navbar-brand {
   align-items: center;
   margin-right: 25px;
   padding-right: 10px;
+  outline: none;
   h1 {
     font-size: 1.4em;
     padding-left: 10px;
@@ -160,6 +160,12 @@ a.navbar-brand {
   color: white;
   li {
     margin-top: 0;
+    p {
+      font-size: 15px;
+      margin: 0;
+      margin-bottom: 5px;
+      text-align: center;
+    }
   }
 }
 .menu-container {
