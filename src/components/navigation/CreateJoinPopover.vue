@@ -35,17 +35,17 @@
       ></a>
       <div class="modal-container">
         <div class="modal-header">
-          <div class="modal-title h5 text-bold">
-            Курс - {{ inviteGroup.className }}
+          <div class="modal-title h5">
+            Курс - <span class="text-error">{{ inviteGroup.className }}</span>
           </div>
         </div>
         <div class="modal-body">
-          <div class="h5 text-bold text-center text-dark">
-            Инструктор:
+          <div class="h5 text-center text-dark">
+            Руководитель:
             <span class="text-primary"> {{ inviteGroup.instructorName }}</span>
           </div>
-          <div class="h5 text-center text-bold text-dark">
-            участников - {{ inviteGroup.members.length }}
+          <div class="h5 text-center text-dark">
+            Участников - {{ inviteGroup.members.length }}
           </div>
         </div>
         <div class="modal-footer">
