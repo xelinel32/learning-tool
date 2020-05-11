@@ -34,7 +34,12 @@
       </div>
       <div id="right">
         <!-- Show all definitions -->
-        <h2 class="answer__item" v-for="(slot, index) in drop" :key="index" :class="getStyle(slot)">
+        <h2
+          class="answer__item"
+          v-for="(slot, index) in drop"
+          :key="index"
+          :class="getStyle(slot)"
+        >
           {{ slot.definition }}
         </h2>
       </div>
@@ -43,31 +48,31 @@
 </template>
 
 <script>
-import { Drag, Drop } from "vue-drag-drop";
+import { Drag, Drop } from 'vue-drag-drop';
 export default {
-  name: "DragDropQuestion",
+  name: 'DragDropQuestion',
   components: { Drag, Drop },
   props: {
     terms: {
       type: Array,
-      required: true
+      required: true,
     },
     defs: {
       type: Array,
-      required: true
+      required: true,
     },
     showCorrect: {
       type: Boolean,
       required: false,
-      default: false
-    }
+      default: false,
+    },
   },
   data: function() {
     return {
       // Drag zone data
       drag: [],
       // Drop zone data
-      drop: []
+      drop: [],
     };
   },
   created() {
@@ -75,17 +80,17 @@ export default {
     for (let i = 0; i < this.terms.length; i++) {
       this.drag.push({
         term: this.terms[i],
-        draggable: true
+        draggable: true,
       });
 
       this.drop.push({
         definition: this.defs[i],
         correctTerm: this.terms[i],
         isCorrect: false,
-        text: "",
+        text: '',
         over: false,
         filled: false,
-        from: null
+        from: null,
       });
     }
 
@@ -99,9 +104,9 @@ export default {
     getStyle(slot) {
       if (this.showCorrect) {
         if (slot.isCorrect) {
-          return "correct";
+          return 'correct';
         } else {
-          return "incorrect";
+          return 'incorrect';
         }
       }
     },
@@ -115,7 +120,7 @@ export default {
         drop.over = true;
         drop.filled = true;
         drop.text = data.term;
-        this.$emit("answered", true);
+        this.$emit('answered', true);
       } else {
         this.drag[drop.from].draggable = true;
         drop.from = data.from;
@@ -128,51 +133,52 @@ export default {
     },
     checkCorrect(drop) {
       if (drop.text === drop.correctTerm) {
-        this.$emit("correct", true);
+        this.$emit('correct', true);
         drop.isCorrect = true;
       } else {
         if (drop.isCorrect) {
-          this.$emit("correct", false);
+          this.$emit('correct', false);
         }
         drop.isCorrect = false;
       }
     },
     handleDragOver(drop) {
-      if (drop.text === "") {
+      if (drop.text === '') {
         drop.over = true;
       }
     },
     handleDragLeave(drop) {
-      if (drop.text === "") {
+      if (drop.text === '') {
         drop.over = false;
       }
     },
     resetDrop(drop) {
-      console.log("reset drop");
+      // console.log("reset drop");
 
       if (drop.from !== null) {
-        drop.text = "";
+        drop.text = '';
         drop.filled = false;
         drop.over = false;
         this.drag[drop.from].draggable = true;
         drop.from = null;
         drop.isCorrect = false;
-        this.$emit("answered", false);
-        this.$emit("correct", false);
+        this.$emit('answered', false);
+        this.$emit('correct', false);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles.scss";
+@import '@/styles.scss';
 
 h1 {
   margin: 0;
-  font-size: 28px;
+  font-size: 24px;
+  border-bottom: 1px solid #2ecc71;
 }
-.answer__item{
+.answer__item {
   font-size: 26px;
 }
 #terms-holder {
