@@ -86,7 +86,7 @@ let router = new Router({
       name: "notes",
       component: NotesCollection,
       meta: {
-        title: "Заметки",
+        title: "Задания",
         requiresAuth: true
       }
     },
@@ -95,7 +95,7 @@ let router = new Router({
       name: "note",
       component: NotePage,
       meta: {
-        title: "Заметка",
+        title: "Задание",
         requiresAuth: true
       }
     },
@@ -161,7 +161,7 @@ let router = new Router({
       name: "agenda",
       component: GroupAgenda,
       meta: {
-        title: "Груповая повестка",
+        title: "Груповые события",
         requiresAuth: true
       }
     },
