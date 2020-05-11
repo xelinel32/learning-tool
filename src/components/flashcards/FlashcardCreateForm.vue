@@ -9,23 +9,6 @@
       @click="$emit('delete')"
     ></span>
     <div id="container">
-      <div class="term-container">
-        <label id="label-term" class="form-label text-primary">
-          Ответ
-        </label>
-        <textarea
-          id="input-term"
-          ref="termText"
-          v-model.trim="data.term"
-          type="text"
-          rows="1"
-          cols="34"
-          maxlength="150"
-          autofocus
-          placeholder="Введите ответ на вопрос"
-          @input="termUpdated"
-        />
-      </div>
       <div class="def-container">
         <label id="label-def" class="form-label text-success">
           Вопрос
@@ -43,6 +26,23 @@
           @keydown.tab.exact="$emit('addNew')"
         >
         </textarea>
+      </div>
+      <div class="term-container">
+        <label id="label-term" class="form-label text-primary">
+          Ответ
+        </label>
+        <textarea
+          id="input-term"
+          ref="termText"
+          v-model.trim="data.term"
+          type="text"
+          rows="1"
+          cols="34"
+          maxlength="150"
+          autofocus
+          placeholder="Введите ответ на вопрос"
+          @input="termUpdated"
+        />
       </div>
     </div>
   </div>
