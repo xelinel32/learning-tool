@@ -76,7 +76,7 @@ export default {
               selected.shortAnswer = true;
               break;
             default:
-              console.log('error');
+              // console.log('error');
           }
         }
       });
