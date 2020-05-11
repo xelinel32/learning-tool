@@ -95,7 +95,7 @@ export default {
         });
       })
       .catch(function(error) {
-        console.log('Error getting public decks: ', error);
+        // console.log('Error getting public decks: ', error);
       });
 
     privateCollection
@@ -110,7 +110,7 @@ export default {
         });
       })
       .catch(function(error) {
-        console.log('Error getting private decks: ', error);
+        // console.log('Error getting private decks: ', error);
       });
   },
   methods: {
@@ -121,7 +121,7 @@ export default {
           this.$emit('selected', this.getAllSelected());
           this.totalSelected += deck.terms.length;
         } else {
-          console.log('Error: ', deck);
+          // console.log('Error: ', deck);
         }
       } else {
         deck.selected = false;
