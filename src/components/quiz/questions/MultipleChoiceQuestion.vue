@@ -2,7 +2,7 @@
   <div id="question">
     <h1>Вопрос: <span class="text-error">{{ definition }}</span></h1>
     <div class="choices" :class="getStyle()">
-      <div v-for="i in 4" :key="i" class="answers">
+      <div v-for="i in 2" :key="i" class="answers">
         <input
           type="radio"
           class="custom-radio"
@@ -48,11 +48,11 @@ export default {
   },
   created() {
     // Determine what index will hold the correct value
-    this.correctIndex = Math.floor(Math.random() * 4);
-    for (let i = 0; i < 4; i++) {
+    this.correctIndex = Math.floor(Math.random() * 2);
+    for (let i = 0; i < 2; i++) {
       this.choices.push(this.getChoice(i));
     }
-    console.log("Correct Index:", this.correctIndex);
+    // console.log("Correct Index:", this.correctIndex);
   },
   methods: {
     getStyle(slot) {
@@ -79,7 +79,7 @@ export default {
       }
     },
     checkCorrect(chosenIndex) {
-      console.log(chosenIndex, "vs", this.correctIndex);
+      // console.log(chosenIndex, "vs", this.correctIndex);
       if (!this.picked) {
         this.picked = true;
         this.$emit("answered", true);
@@ -116,7 +116,7 @@ h1 {
   padding: 30px;
   margin-top: 10px;
   display: grid;
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-rows: repeat(1, 1fr);
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 10px;
   background-color: white;
