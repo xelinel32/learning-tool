@@ -2,8 +2,8 @@
   <div v-if="userAuthorized && !isLoading">
     <page-title>
       <template slot="center">Управление группой</template>
-      <template slot="right" @buttonClicked="deleteGroup">
-        <confirm-button>
+      <template slot="right">
+        <confirm-button @buttonClicked="deleteGroup">
           <template v-slot:title>
             Удалить группу?
           </template>
@@ -280,11 +280,11 @@
 
 <script>
 import { checkOwner } from '@/scripts/groupFuncs';
-import { db, FirebaseConsts } from '@/firebaseConfig';
 import PageTitle from '@/components/navigation/PageTitle';
-import ConfirmButton from '@/components/ConfirmButton';
 import flatPickr from 'vue-flatpickr-component';
+import ConfirmButton from '@/components/ConfirmButton';
 import 'flatpickr/dist/flatpickr.css';
+import { db, FirebaseConsts } from '@/firebaseConfig';
 
 export default {
   name: 'GroupSettings',
@@ -345,9 +345,10 @@ export default {
   },
   methods: {
     deleteGroup() {
-      // db.collection("study-groups").doc(this.$route.params.groupID).delete();
-      // Work out deletion logic to delete group and all subcollections
-      // Have to manually find and delete subcollections
+      db.collection('study-groups')
+        .doc(this.$route.params.groupID)
+        .delete();
+      this.$router.push({ path: '/dashboard' });
     },
     changeOwner() {
       db.collection('study-groups')
