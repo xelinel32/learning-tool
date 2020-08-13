@@ -1,5 +1,7 @@
 # learning-tool
 
+![learning tool]()
+
 Vue learning App as diploma bachelor project
 
 ```bash
