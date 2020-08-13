@@ -1,6 +1,6 @@
 # learning-tool
 
-![learning tool]()
+![learning tool](learning-app.png)
 
 Vue learning App as diploma bachelor project
 
