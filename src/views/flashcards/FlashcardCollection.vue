@@ -6,7 +6,7 @@
           class="btn btn-primary"
           @click="$router.push(`/${$route.params.groupID}/flashcards/create`)"
         >
-          Добавить <i class="fas fa-plus ml-2"></i>
+          Додати <i class="fas fa-plus ml-2"></i>
         </button>
       </template>
       <template slot="center">Коллекция карточек</template>

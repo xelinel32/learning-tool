@@ -1,8 +1,8 @@
 <template>
   <div v-if="user !== null" id="full-screen">
     <div class="welcome-msg">
-      <span class="text-dark d-block mb-2">Добрый день, {{ user.displayName }}!</span>
-      <p id="date" class="text-gray">сегодня {{ dateCurrent() }}</p>
+      <span class="text-dark d-block mb-2">Good morning, {{ user.displayName }}!</span>
+      <p id="date" class="text-gray">Today is {{ dateCurrent() }}</p>
       <create-join-popover></create-join-popover>
     </div>
     <!-- Centered Empty Dashboard Placeholder -->
@@ -17,7 +17,7 @@
         >
           <div id="name">{{ group.className }}</div>
           <div>
-            Начало - {{ group.meetingDays[0] }}, {{ group.meetingTime[0] }}
+            Start in - {{ group.meetingDays[0] }}
           </div>
           <div id="professor">{{ group.instructorName }}</div>
         </router-link>
@@ -33,7 +33,7 @@
             alt="Нет групп"
           />
           <p class="empty-title h5 text-warning">
-            У вас пока, что нет созданых групп 😞
+            Ви поки що не маєте своїх груп 😞
           </p>
         </div>
       </div>
@@ -66,9 +66,7 @@ export default {
   methods: {
     dateCurrent() {
       const date = this.date;
-      const ruLocale = require('date-fns/locale/ru');
-      let locales = { locale: ruLocale };
-      return format(date, 'HH:mm dddd, MMMM Do, YYYY' + ' год', locales);
+      return format(date, 'HH:mm dddd, MMMM Do, YYYY');
     },
   },
   created() {

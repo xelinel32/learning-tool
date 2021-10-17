@@ -2,7 +2,7 @@
   <div id="full-screen">
     <!-- Page Title -->
     <page-title>
-      <template slot="center">Создать новую учебную группу</template>
+      <template slot="center">Створоти нову учбову группу</template>
     </page-title>
 
     <div class="create-content">
@@ -19,38 +19,38 @@
 
         <!-- Class Name Card -->
         <div v-if="active === 0" class="infoContainer">
-          <h2>Название группы</h2>
+          <h2>Назва групи</h2>
           <div class="form-group">
             <input
               v-model="className"
               class="form-input"
               type="text"
-              placeholder="Название группы"
+              placeholder="Введіть назву групи"
               name="className"
               required
               @keydown.enter="next"
             />
           </div>
-          <h3 style="margin-top: 20px;">Код курса?(не объязательно)</h3>
+          <h3 style="margin-top: 20px;">Код курсу?(не обов'язково)</h3>
           <input
             v-model="courseCode"
             class="form-input"
             type="text"
             style="width: 200px;"
-            placeholder="Код курса"
+            placeholder="Введіть код курсу"
             @keydown.enter="next"
           />
         </div>
 
         <!-- Instructor Name Form -->
         <div v-else-if="active === 1" class="infoContainer">
-          <h2>Как зовут преподавателя курса</h2>
+          <h2>Яз звуть керівника групи?</h2>
           <div class="form-group">
             <input
               v-model="instructorName"
               class="form-input"
               type="text"
-              placeholder="Имя преподавателя"
+              placeholder="Введіть ім'я керівника групи"
               name="instructor"
               required
               @keydown.enter="next"
@@ -60,7 +60,7 @@
 
         <!-- Class Meeting Time Form -->
         <div v-else-if="active === 2" class="infoContainer">
-          <h2>Время провождения курса?</h2>
+          <h2>Часи проводження занять?</h2>
 
           <!-- Day Selector Button Block -->
           <div class="btn-group btn-group-block">
@@ -69,21 +69,21 @@
               class="btn"
               @click="toggle('monday')"
             >
-              Понедельник
+              Понеділок
             </button>
             <button
               :class="meetingDays.tuesday ? 'active' : ''"
               class="btn"
               @click="toggle('tuesday')"
             >
-              Вторник
+              Вівторок
             </button>
             <button
               :class="meetingDays.wednesday ? 'active' : ''"
               class="btn"
               @click="toggle('wednesday')"
             >
-              Среда
+              Середа
             </button>
             <button
               :class="meetingDays.thursday ? 'active' : ''"
@@ -97,7 +97,7 @@
               class="btn"
               @click="toggle('friday')"
             >
-              Пятница
+              П'ятниця
             </button>
           </div>
 
@@ -125,7 +125,7 @@
 
         <!-- Class Meeting Location Form -->
         <div v-else-if="active === 3" class="infoContainer">
-          <h2>Место проведения курсов</h2>  
+          <h2>Місце проводження курсу</h2>
 
           <input
             v-model="location"
@@ -133,14 +133,14 @@
             style="width: 60%;"
             type="text"
             name="location"
-            placeholder="Адрес"
+            placeholder="Адреса чи посилання"
             @keydown.enter="next"
           />
         </div>
 
         <!-- Instructor Website Form -->
         <div v-else-if="active === 4" class="infoContainer">
-          <h2>Есть ли у вас веб-сайт?</h2>
+          <h2>Чи є у вас веб-сайт?</h2>
 
           <div class="form-group switch">
             <label class="form-switch">
@@ -180,7 +180,7 @@
 
         <!-- Extra Group Info Form -->
         <div v-else-if="active === 5" class="infoContainer">
-          <h2>Дополнительное описание</h2>
+          <h2>Додатковий опис</h2>
           <div class="form-group switch">
             <label class="form-switch">
               <input v-model="hasExtraInfo" type="checkbox" />
@@ -202,7 +202,6 @@
                 type="text-area"
                 cols="53"
                 rows="3"
-                placeholder="Дополнительная информация о классе"
                 @keydown.enter="next"
               ></textarea>
             </transition>
@@ -212,35 +211,35 @@
         <!-- Create Group with previous data confirmation -->
         <div v-else-if="active === 6" class="infoContainer">
           <button class="createBtn" @click="createStudyGroup">
-            Создать группу
+            Створити
           </button>
         </div>
 
         <!-- Invite Code / New Group Links -->
         <div v-else-if="active === 7" class="infoContainer">
-          <h3>Ваш класс был создан!</h3>
+          <h3>Група була створена!</h3>
           <div style="width: 50%; margin: 20px auto;" class="input-group">
             <input
               ref="inviteDisplay"
               v-model="inviteCode"
               type="text"
               class="form-input"
-              placeholder="Код приглашения"
+              placeholder="Код групи"
               style="margin: 0;"
             />
             <button class="btn btn-primary input-group-btn" @click="copyCode">
-              Скопировать код
+              Копіювати код
             </button>
           </div>
           <div id="btnContainer">
             <router-link class="btn" :to="{ name: 'dashboard' }"
-              >Доска</router-link
+              >Головна</router-link
             >
             <router-link
               style="margin: 0px 10px;"
               class="btn btn-success"
               :to="{ name: 'home', params: { groupID: newGroupID } }"
-              >Перейти к группе</router-link
+              >Перейти до групи</router-link
             >
           </div>
         </div>

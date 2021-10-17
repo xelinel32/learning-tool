@@ -3,7 +3,7 @@
     <!-- Title Bar -->
     <page-title>
       <template slot="center">
-        Домашняя страница
+        Home page
       </template>
     </page-title>
 
@@ -11,9 +11,9 @@
       <div class="left-right-container">
         <div class="agenda-container">
           <div class="tile-header">
-            <h4>Предстоящие события</h4>
+            <h4>Income events</h4>
             <router-link :to="`/${$route.params.groupID}/agenda/`"
-              >Все</router-link
+              >All</router-link
             >
           </div>
           <div
@@ -44,9 +44,9 @@
         <div class="recent-container">
           <div class="notes-container">
             <div class="tile-header">
-              <h4>Недавние задания</h4>
+              <h4>Recent added tasks</h4>
               <router-link :to="`/${$route.params.groupID}/notes/`"
-                >Все</router-link
+                >All</router-link
               >
             </div>
             <div class="icon-container">
@@ -63,9 +63,9 @@
           <!-- Displays the group's most popular flashcards -->
           <div class="flashcards-container">
             <div class="tile-header">
-              <h4>Недавние колекции вопросов</h4>
+              <h4>Recent questions collection</h4>
               <router-link :to="`/${$route.params.groupID}/flashcards/`"
-                >Все</router-link
+                >All</router-link
               >
             </div>
 

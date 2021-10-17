@@ -18,7 +18,7 @@
         >
         </a>
 
-        <div class="modal-title h4">Настройки профиля</div>
+        <div class="modal-title h4">Profile setup</div>
       </div>
       <div class="modal-body">
         <ul class="tab">
@@ -27,21 +27,21 @@
             :class="[activeTab === 1 ? 'active' : '']"
             @click="activeTab = 1"
           >
-            <a>Профиль</a>
+            <a>Profile</a>
           </li>
           <li
             class="tab-item"
             :class="[activeTab === 2 ? 'active' : '']"
             @click="activeTab = 2"
           >
-            <a>Аккаунт</a>
+            <a>Account</a>
           </li>
           <li
             class="tab-item"
             :class="[activeTab === 3 ? 'active' : '']"
             @click="activeTab = 3"
           >
-            <a>Мои группы</a>
+            <a>My groups</a>
           </li>
         </ul>
 
@@ -49,7 +49,7 @@
         <div v-if="activeTab === 1">
           <div class="tile">
             <div class="tile-content text-left">
-              <div class="tile-title text-bold">Отображаемое имя</div>
+              <div class="tile-title text-bold">Username</div>
               <div class="tile-subtitle">
                 <input
                   v-model="profileDetails.newName"
@@ -62,9 +62,9 @@
           </div>
           <div class="tile">
             <div class="tile-content text-left">
-              <div class="tile-title text-bold">Фото профиля</div>
+              <div class="tile-title text-bold">Profile photo</div>
               <div class="tile-subtitle">
-                Загрузить новое фото:
+                Upload a new photo:
                 <input
                   id=""
                   class="form-input form-inline"
@@ -79,7 +79,7 @@
           </div>
           <div class="tile">
             <div class="tile-content text-left">
-              <div class="tile-title text-bold">Описание</div>
+              <div class="tile-title text-bold">Description</div>
               <div class="tile-subtitle">
                 <textarea
                   v-model="profileDetails.newBio"
@@ -99,7 +99,7 @@
           <div class="tile">
             <div class="tile-content text-left">
               <div class="tile-title text-bold">
-                Введите текущий пароль, что бы изменить профиль...
+                Enter a current password for changing password...
               </div>
               <div id="input-button-container" class="tile-subtitle">
                 <input
@@ -109,7 +109,7 @@
                   placeholder="Ваш пароль"
                 />
                 <button class="btn btn-success" @click="reauthenticateUser">
-                  OK
+                  Ok
                 </button>
               </div>
             </div>
@@ -132,14 +132,14 @@
                   class="btn btn-success form-inline"
                   @click="updateEmail"
                 >
-                  Изменить
+                  Change
                 </button>
               </div>
             </div>
           </div>
           <div v-if="!isGoogleAccount" class="tile">
             <div class="tile-content text-left">
-              <div class="tile-title text-bold">Изменить пароль</div>
+              <div class="tile-title text-bold">Change a password</div>
               <div id="input-button-container" class="tile-subtitle">
                 <input
                   v-model="newCreds.password"
@@ -149,7 +149,7 @@
                 />
 
                 <button class="btn btn-success" @click="updatePassword">
-                  Изменить
+                  Change
                 </button>
               </div>
             </div>
@@ -157,11 +157,11 @@
           <div class="tile">
             <div class="tile-content text-left">
               <div class="tile-title text-bold text-center">
-                Удалить профиль
+                Delete a profile
               </div>
               <div class="tile-subtitle delete-container">
                 <button class="btn btn-error" @dblclick="deleteAccount">
-                  Удалить
+                  Delete
                 </button>
               </div>
             </div>
@@ -173,9 +173,9 @@
           <table class="table table-striped table-hover">
             <thead>
               <tr>
-                <th>Имя группы</th>
-                <th>Учасники</th>
-                <th class="text-center">Покинуть группу</th>
+                <th>Name of the group</th>
+                <th>Mmembers</th>
+                <th class="text-center">Leave group</th>
               </tr>
             </thead>
             <tbody>
@@ -202,7 +202,7 @@
           class="save-btn btn btn-primary"
           @click="saveChanges"
         >
-          Сохранить изменения
+          Save current chnages
         </button>
       </div>
     </div>
@@ -263,9 +263,6 @@ export default {
       .then((user) => {
         this.userBio = user.description;
       })
-      .catch((error) => {
-        // console.log('ProfileSettings: ' + error);
-      });
 
     this.loadGroups();
 
@@ -287,7 +284,7 @@ export default {
     });
   },
   methods: {
-    async deleteAccount(user) {
+    async deleteAccount() {
       const userId = this.user.uid;
       await firebase.auth().currentUser.delete();
       await db
@@ -302,10 +299,6 @@ export default {
           // Update successful.
           // console.log('Email updated');
         })
-        .catch(function(error) {
-          // An error happened.
-          // console.log('Email update failure');
-        });
     },
 
     updatePassword() {
@@ -315,10 +308,6 @@ export default {
           // Update successful.
           // console.log('Password updated');
         })
-        .catch(function(error) {
-          // An error happened.
-          // console.log('Error updating password...');
-        });
     },
     reauthenticateUser() {
       let credential;
@@ -336,10 +325,6 @@ export default {
           // console.log('Successful pass');
           this.didReauth = true;
         })
-        .catch((error) => {
-          // An error happened.
-          // console.log(error);
-        });
     },
     closeAndReset() {
       this.activeTab = 1;
@@ -350,10 +335,6 @@ export default {
         .then((groupList) => {
           this.groupList = groupList;
         })
-        // Catch group loading error
-        .catch((error) => {
-          // console.log(error);
-        });
     },
     leaveGroup(id) {
       // Remove the user from members list of specific study group

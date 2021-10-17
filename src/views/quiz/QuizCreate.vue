@@ -14,7 +14,7 @@
           "
           @click="loadQuiz()"
         >
-          Создать
+          Створити
           <i class="fas fa-plus ml-2"></i>
         </button>
       </template>
@@ -27,11 +27,11 @@
       </template>
     </page-title>
     <div class="content-container">
-      <h3 id="step-instruction">Выберите тип тестов</h3>
+      <h3 id="step-instruction">Виберіть тип тесту</h3>
       <question-type-selector @selected="selectedQTypes = $event" />
 
-      <h3 id="step-instruction">Выберите карточки и пройдите тест</h3>
-      <h5 id="step-hint">(тесты имеют лимит в 100 карточек)</h5>
+      <h3 id="step-instruction">Віберіть картку з тестами та пройдіть її</h3>
+      <h5 id="step-hint">(тести мають ліміт (макс. 100))</h5>
       <!-- Component that displays checkboxes of each available flashcard deck -->
       <deck-selector :limit="100" @selected="selectedDecks = $event" />
     </div>

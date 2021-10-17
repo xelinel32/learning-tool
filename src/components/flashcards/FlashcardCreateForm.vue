@@ -11,7 +11,7 @@
     <div id="container">
       <div class="def-container">
         <label id="label-def" class="form-label text-success">
-          Вопрос
+          Запитання
         </label>
         <textarea
           id="input-def"
@@ -20,7 +20,7 @@
           type="text"
           rows="1"
           maxlength="150"
-          placeholder="Введите ваш вопрос"
+          placeholder="Введіть ваше запитання"
           @input="defUpdated"
           @keydown.ctrl.enter="$emit('addNew')"
           @keydown.tab.exact="$emit('addNew')"
@@ -29,7 +29,7 @@
       </div>
       <div class="term-container">
         <label id="label-term" class="form-label text-primary">
-          Ответ
+          Відповідь
         </label>
         <textarea
           id="input-term"
@@ -40,7 +40,7 @@
           cols="34"
           maxlength="150"
           autofocus
-          placeholder="Введите ответ на вопрос"
+          placeholder="Введіть відповідь на запитання"
           @input="termUpdated"
         />
       </div>

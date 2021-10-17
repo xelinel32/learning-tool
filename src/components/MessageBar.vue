@@ -4,7 +4,7 @@
       class="btn btn-clear float-right"
       @click="$emit('closeMessage')"
     ></button>
-    <slot>Сдесь отображаються сообщения</slot>
+    <slot>Ваші посилання</slot>
   </div>
 </template>
 

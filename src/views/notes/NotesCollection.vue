@@ -10,12 +10,12 @@
             @keydown.enter="createNote"
             @click="createNote"
           >
-            Создать
+            Create
           </button>
         </div>
       </template>
       <template slot="center">
-        Задания
+        Tasks
       </template>
       <template slot="right">
         <div class="has-icon-left">
@@ -23,7 +23,7 @@
             v-model="searchQuery"
             type="text"
             class="search-input form-input"
-            placeholder="Поиск по названию"
+            placeholder="Search by name"
           />
           <i class="form-icon fas fa-search"></i>
         </div>
@@ -90,10 +90,10 @@ export default {
       notesRef
         .collection("private")
         .add({
-          title: "Заполнить*",
+          title: "Write it",
           creationDate: initDate,
           lastUpdated: initDate,
-          content: "#### Тут можно создать задачу"
+          content: "#### Here we can describe taks description"
         })
         .then(note => {
           // Get the note's ID and save it in the note itself.

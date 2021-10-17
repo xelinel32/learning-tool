@@ -3,11 +3,11 @@
     <page-title>
       <template slot="left">
         <button class="btn btn-primary" @click="showCreateForm(true)">
-          Добавить <i class="fas fa-plus"></i>
+          Add <i class="fas fa-plus"></i>
         </button>
       </template>
       <template slot="center">
-        Груповые события
+        Group events
       </template>
       <template slot="right">
         <!-- Save Item Form Button -->
@@ -42,14 +42,13 @@
             @buttonClicked="deleteItem(selectedItem)"
           >
             <template v-slot:title>
-              Удалить ивент?
+              Delete the event?
             </template>
             <template v-slot:body>
-              Ивент дня будет окончательно удален. Другие участники группы
-              больше не увидят его.
+              Event of the day will be deleting completely.
             </template>
             <template v-slot:button-text>
-              Удалить
+              Delete
             </template>
           </confirm-button>
         </div>
@@ -110,7 +109,7 @@
             />
           </div>
           <p class="empty-title h5">
-            У вас пока, что нет созданных событий 😞
+            You don't have any events yet 😞
           </p>
         </div>
 
@@ -127,7 +126,7 @@
             />
           </div>
           <p class="empty-title h5">
-            Выберите ивент и посмотрите его описание
+            Choose event and look it description
           </p>
         </div>
       </div>

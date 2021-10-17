@@ -1,6 +1,6 @@
 <template>
   <div id="question">
-    <h1>Сопоставьте с определением</h1>
+    <h1>Зіставте з описом</h1>
     <!-- Terms Box -->
     <div id="terms-holder">
       <!-- Create draggable component for each term -->

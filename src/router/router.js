@@ -59,7 +59,7 @@ let router = new Router({
       name: "dashboard",
       component: Dashboard,
       meta: {
-        title: "Доска",
+        title: "Dashboard",
         requiresAuth: true
       }
     },
@@ -68,7 +68,7 @@ let router = new Router({
       name: "createGroup",
       component: CreateGroup,
       meta: {
-        title: "Создать группу",
+        title: "Create a group",
         requiresAuth: true
       }
     },
@@ -77,7 +77,7 @@ let router = new Router({
       name: "home",
       component: GroupHomePage,
       meta: {
-        title: "Домашняя страница",
+        title: "Home page",
         requiresAuth: true
       }
     },
@@ -86,7 +86,7 @@ let router = new Router({
       name: "notes",
       component: NotesCollection,
       meta: {
-        title: "Задания",
+        title: "Tasks",
         requiresAuth: true
       }
     },
@@ -95,7 +95,7 @@ let router = new Router({
       name: "note",
       component: NotePage,
       meta: {
-        title: "Задание",
+        title: "Task",
         requiresAuth: true
       }
     },
@@ -104,7 +104,7 @@ let router = new Router({
       name: "flashcards",
       component: FlashcardCollection,
       meta: {
-        title: "Мои карточки",
+        title: "My cards",
         requiresAuth: true
       }
     },
@@ -113,7 +113,7 @@ let router = new Router({
       name: "study",
       component: FlashcardStudy,
       meta: {
-        title: "Карта класса",
+        title: "Desk of the class",
         requiresAuth: true
       },
       props: true
@@ -123,7 +123,7 @@ let router = new Router({
       name: "createFlashcards",
       component: FlashcardCreate,
       meta: {
-        title: "Создать карточку",
+        title: "Create a card",
         requiresAuth: true
       }
     },
@@ -132,7 +132,7 @@ let router = new Router({
       name: "editFlashcards",
       component: FlashcardCreate,
       meta: {
-        title: "Редактировать карточку",
+        title: "Edit cart",
         requiresAuth: true
       },
       props: true
@@ -142,7 +142,7 @@ let router = new Router({
       name: "createQuiz",
       component: QuizCreate,
       meta: {
-        title: "Сгенерировать опрос",
+        title: "Generate poll",
         requiresAuth: true
       }
     },
@@ -151,7 +151,7 @@ let router = new Router({
       name: "quiz",
       component: Quiz,
       meta: {
-        title: "Опрос",
+        title: "Poll",
         requiresAuth: true
       },
       props: true
@@ -161,7 +161,7 @@ let router = new Router({
       name: "agenda",
       component: GroupAgenda,
       meta: {
-        title: "Груповые события",
+        title: "Group events",
         requiresAuth: true
       }
     },
@@ -170,7 +170,7 @@ let router = new Router({
       name: "members",
       component: MembersPage,
       meta: {
-        title: "Участники",
+        title: "Members",
         requiresAuth: true
       }
     },
@@ -179,7 +179,7 @@ let router = new Router({
       name: "settings",
       component: GroupSettings,
       meta: {
-        title: "Настройки группы",
+        title: "Group settings",
         requiresAuth: true
       }
     }

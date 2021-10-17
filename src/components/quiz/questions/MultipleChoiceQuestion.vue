@@ -1,6 +1,6 @@
 <template>
   <div id="question">
-    <h1>Вопрос: <span class="text-error">{{ definition }}</span></h1>
+    <h1>Запитання: <span class="text-error">{{ definition }}</span></h1>
     <div class="choices" :class="getStyle()">
       <div v-for="i in 2" :key="i" class="answers">
         <input
@@ -55,7 +55,7 @@ export default {
     // console.log("Correct Index:", this.correctIndex);
   },
   methods: {
-    getStyle(slot) {
+    getStyle() {
       if (this.showCorrect) {
         if (this.correct) {
           return "correct";

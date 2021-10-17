@@ -21,7 +21,7 @@
           v-model="userMessage"
           type="text"
           class="form-input message-input"
-          placeholder="Введите сообщение"
+          placeholder="Введіть посилання"
           @keydown.enter="sendMessage"
         />
         <button

@@ -5,10 +5,10 @@
     <page-title>
       <template slot="left">
         <button class="btn btn-primary" @click="inviteMember()">
-          Пригласить <i class="fas fa-plus"></i>
+          Invite <i class="fas fa-plus"></i>
         </button>
       </template>
-      <template slot="center">Участники</template>
+      <template slot="center">Members</template>
     </page-title>
     <div
       v-if="!loading"
@@ -52,7 +52,7 @@
             aria-label="Close"
             @click="displayModal = false"
           ></a>
-          <div class="modal-title h5">Сгенерировать код</div>
+          <div class="modal-title h5">Generate a code</div>
         </div>
         <div class="modal-body">
           <div class="content">
@@ -64,7 +64,7 @@
                 class="form-input"
               />
               <button class="btn btn-primary input-group-btn" @click="copyCode">
-                Копировать
+                Copy
               </button>
             </div>
           </div>
@@ -126,8 +126,8 @@ export default {
           this.$notify({
             group: 'generateInvite',
             type: 'success',
-            title: 'Неверно сгенерирован код',
-            text: 'Код был скопирован в буфер обмена',
+            title: 'Incorrect had generated code',
+            text: 'Code copied to buffer',
           });
         });
       this.$refs.invite.select();

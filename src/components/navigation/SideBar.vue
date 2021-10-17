@@ -20,7 +20,7 @@
             :to="{ name: 'home' }"
           >
             <i :class="{ 'large-icon': !show }" class="fas fa-home"></i>
-            <span v-show="show"> Главная </span>
+            <span v-show="show"> Home page </span>
           </router-link>
         </li>
 
@@ -41,7 +41,7 @@
             :to="{ name: 'flashcards' }"
           >
             <i :class="{ 'large-icon': !show }" class="fas fa-sticky-note"></i>
-            <span v-show="show"> Карточки</span>
+            <span v-show="show"> Cards</span>
           </router-link>
         </li>
 
@@ -57,7 +57,7 @@
                 : ''
             "
             ><i :class="{ 'large-icon': !show }" class="fas fa-pencil-alt"></i>
-            <span v-show="show"> Тесты</span>
+            <span v-show="show"> Tests</span>
           </router-link>
         </li>
 
@@ -70,7 +70,7 @@
               :class="{ 'large-icon': !show }"
               class="fas fa-calendar-alt"
             ></i>
-            <span v-show="show"> События</span>
+            <span v-show="show"> Events</span>
           </router-link>
         </li>
 
@@ -87,7 +87,7 @@
             "
           >
             <i :class="{ 'large-icon': !show }" class="fas fa-file"></i>
-            <span v-show="show"> Задания</span>
+            <span v-show="show"> Tasks</span>
           </router-link>
         </li>
 
@@ -102,7 +102,7 @@
             :class="$route.name === 'members' ? 'active' : ''"
             :to="{ name: 'members' }"
             ><i :class="{ 'large-icon': !show }" class="fas fa-user-circle"></i>
-            <span v-show="show"> Участники</span>
+            <span v-show="show"> Members</span>
           </router-link>
         </li>
 
@@ -117,7 +117,7 @@
             :class="$route.name === 'settings' ? 'active' : ''"
           >
             <i :class="{ 'large-icon': !show }" class="fas fa-cog"></i>
-            <span v-show="show"> Настройки</span>
+            <span v-show="show"> Settings</span>
           </router-link>
         </li>
       </ul>

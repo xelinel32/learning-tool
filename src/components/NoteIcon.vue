@@ -13,18 +13,18 @@
     <div>
       <!-- Created -->
       <p id="created">
-        <i>Создана</i> {{ info.creationDate.toDate().toLocaleDateString() }}
+        <i>Create at</i> {{ info.creationDate.toDate().toLocaleDateString() }}
       </p>
       <!-- Modified -->
       <p id="modified">
-        <i>Изменено</i> {{ calcDays(info.lastUpdated.toDate()) }}
+        <i>Updated</i> {{ calcDays(info.lastUpdated.toDate()) }}
       </p>
     </div>
     <button
       id="editBtn"
       @click="$router.push(`/${$route.params.groupID}/notes/${info.id}`)"
     >
-      Открыть
+      Open
     </button>
   </div>
 </template>
@@ -52,9 +52,7 @@ export default {
         .delete();
     },
     calcDays(date) {
-      let ruLocale = require('date-fns/locale/ru');
-      let locales = { locale: ruLocale };
-      return distanceInWordsToNow(date, locales) + ' спустя';
+      return distanceInWordsToNow(date) + ' ago';
     },
   },
 };

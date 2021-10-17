@@ -23,24 +23,19 @@ export default {
     return {
       questionTypes: [
         {
-          type: 'Несколько вариантов',
+          type: 'Декілька варіантів',
           description:
-            'Выберите правильный термин для данного определения из указанных вариантов',
-          selected: false,
-        },
-        // {
-        //   type: 'Сопоставление',
-        //   description: 'Сопоставьте правильный термин с данным определением',
-        //   selected: false,
-        // },
-        {
-          type: 'Перетащите',
-          description: 'Перетащите правильный термин в данное определение',
+            'Веберіть коректну віподвіть з варіантів нижче',
           selected: false,
         },
         {
-          type: 'Коротки ответ',
-          description: 'Введите правильный термин для данного определения',
+          type: 'Перетаскування',
+          description: 'Перетащіть коректну відповідь нижче',
+          selected: false,
+        },
+        {
+          type: 'Одна відповідь',
+          description: 'Веберіть коректну віподвіть з варіантів нижче',
           selected: false,
         },
       ],
@@ -63,16 +58,16 @@ export default {
       this.questionTypes.forEach((type) => {
         if (type.selected === true) {
           switch (type.type) {
-            case 'Несколько вариантов':
+            case 'Декілька варіантів':
               selected.multipleChoice = true;
               break;
-            case 'Сопоставление':
+            case 'Зіставте':
               selected.matching = true;
               break;
-            case 'Перетащите':
+            case 'Перетягніть':
               selected.dragAndDrop = true;
               break;
-            case 'Коротки ответ':
+            case 'Коротка відповіть':
               selected.shortAnswer = true;
               break;
             default:

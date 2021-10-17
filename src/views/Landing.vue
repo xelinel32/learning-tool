@@ -34,7 +34,7 @@
           autocomplete="off"
         />
         <button id="loginButton" class="btn btn-success m-1" @click="logIn">
-          Войти
+          Sign In
         </button>
       </form>
     </header>
@@ -68,7 +68,7 @@
           href="#"
           style="cursor: pointer"
           @click="modalActive = true"
-          >Забыли пароль?</a
+          >Do you forgot your password?</a
         >
       </MessageBar>
     </transition>
@@ -88,7 +88,7 @@
             aria-label="Close"
             @click="modalActive = false"
           ></a>
-          <div class="modal-title h5">Введите ваш email</div>
+          <div class="modal-title h5">Type your email here</div>
         </div>
         <div class="modal-body">
           <div class="content">
@@ -105,7 +105,7 @@
         </div>
         <div class="modal-footer">
           <button class="btn btn-primary m-1" @click="sendResetEmail">
-            Восстановить
+            Recover my password
           </button>
         </div>
       </div>
@@ -116,7 +116,7 @@
       <div class="column col-6 col-sm-12 col-md-12 hide-xs hide-sm">
         <div id="right-container form-group">
           <form data-vv-scope="signup" @submit.prevent>
-            <h1>Регистация</h1>
+            <h1>Sign Up</h1>
             <span id="name-container">
               <input
                 v-model.trim="firstName"
@@ -124,7 +124,7 @@
                 class="form-input"
                 type="text"
                 name="firstname"
-                placeholder="Имя"
+                placeholder="Name"
               />
               <input
                 v-model.trim="lastName"
@@ -132,7 +132,7 @@
                 class="form-input"
                 type="text"
                 name="lastname"
-                placeholder="Фамилия"
+                placeholder="Surname"
               />
             </span>
             <br />
@@ -150,23 +150,18 @@
               class="form-input"
               type="password"
               name="password"
-              placeholder="Пароль"
+              placeholder="Password"
             /><br />
             <button class="btn btn-primary mx-1" @click="createAccount">
-              Регистация
+              Sign Up
             </button>
             <button class="btn mx-1" @click="googleSignIn">
               <i class="fab fa-google"></i>
-              Войти с Google
+              Sign Up with Google
             </button>
           </form>
         </div>
       </div>
-    </div>
-
-    <div class="show-xs show-sm">
-      <p>К сожелению, <i>Learning App</i> доступен только для пк версии</p>
-      <p>Что бы войти, зайдите с компютера</p>
     </div>
   </div>
 </template>

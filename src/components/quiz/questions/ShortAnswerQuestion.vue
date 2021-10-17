@@ -1,7 +1,7 @@
 <template>
   <div id="question">
     <h4>
-      Вопрос: <span class="text-error">{{ definition }}</span>
+      Запитання: <span class="text-error">{{ definition }}</span>
     </h4>
     <input
       v-model.trim="userAnswer"
@@ -9,7 +9,7 @@
       type="text"
       :class="getStyle()"
       @input="handleInput()"
-      placeholder="Напишите ответ"
+      placeholder="Напишіть відповідь"
     />
   </div>
 </template>

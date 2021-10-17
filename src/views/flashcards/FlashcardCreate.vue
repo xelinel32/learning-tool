@@ -7,7 +7,7 @@
           class="form-input"
           type="text"
           maxlength="30"
-          placeholder="Название колекции"
+          placeholder="Назва коллекції карток"
           @change="isSaved = false"
         />
       </template>
@@ -29,13 +29,13 @@
           @buttonClicked="deleteDeck"
         >
           <template v-slot:title>
-            Удалить карточку?
+            Видалити карточку?
           </template>
           <template v-slot:body>
-            Эта колекция будет удалена.
+            Ця колекція буде видалена.
           </template>
           <template v-slot:button-text>
-            Удалить
+            Видалити
           </template>
         </confirm-button>
       </template>
@@ -46,14 +46,14 @@
         class="btn btn-clear float-right"
         @click="noTitle = false"
       ></button>
-      Введите название колекции
+      Введіть назву колекції
     </div>
     <div v-if="!contentFilled" class="toast toast-error">
       <button
         class="btn btn-clear float-right"
         @click="contentFilled = true"
       ></button>
-      Введите имя и ответ для каждой карточки
+      Введіть питання та відповідь для карток
     </div>
     <div v-if="!isLoading" class="page-content">
       <!-- maxlength="100" -->
@@ -70,7 +70,7 @@
       />
       <div class="addCard" @click="addCard">
         <h1 class="button-icon"><i class="fas fa-plus"></i></h1>
-        <h1>Добавить</h1>
+        <h1>Додати</h1>
       </div>
     </div>
     <div v-else class="loading loading-lg"></div>
@@ -237,9 +237,6 @@ export default {
               this.isSaved = true;
               this.$router.push(`/${this.$route.params.groupID}/flashcards`);
             })
-            .catch((error) => {
-              // console.error("Error updating document: ", error);
-            });
         } else {
           // Otherwise create a brand new document
           flashcardCollection
@@ -256,14 +253,10 @@ export default {
               downvotes: [],
               upvotes: [],
             })
-            .then((docRef) => {
-              // console.log('Flashcard Deck created with doc id: ', docRef.id);
+            .then(() => {
               this.$router.push(`/${this.$route.params.groupID}/flashcards`);
               this.isSaved = true;
             })
-            .catch((error) => {
-              // console.error("Error adding document: ", error);
-            });
         }
       } else {
         this.noTitle = true;

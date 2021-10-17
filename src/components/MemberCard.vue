@@ -7,7 +7,7 @@
         <h1 class="button-icon"><i class="fas fa-plus"></i></h1>
       </div>
     </div>
-    <h2>Пригласить участников</h2>
+    <h2>Invite some members</h2>
     <div class="gradient-underline"></div>
   </div>
 

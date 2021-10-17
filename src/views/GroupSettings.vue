@@ -1,17 +1,17 @@
 <template>
   <div v-if="userAuthorized && !isLoading">
     <page-title>
-      <template slot="center">Управление группой</template>
+      <template slot="center">Group control</template>
       <template slot="right">
         <confirm-button @buttonClicked="deleteGroup">
           <template v-slot:title>
-            Удалить группу?
+            Delete the group?
           </template>
           <template v-slot:body>
-            Это удалить группу, всех участников и записи!
+            This action will be deleting group and everything members in it.
           </template>
           <template v-slot:button-text>
-            Да, удалить мою группу
+            Yes, delete my group
           </template>
         </confirm-button>
       </template>
@@ -21,7 +21,7 @@
       <div class="columns">
         <div class="column col-5 col-mx-auto col-xl-10">
           <div class="group-details">
-            <h4>Изменить информацию</h4>
+            <h4>Change a group info</h4>
 
             <form
               v-if="!loading.details"
@@ -31,46 +31,46 @@
               <!-- Class Name Input -->
               <div class="form-group">
                 <label class=" col-3 form-label" for="input-example-1"
-                  >Название</label
+                  >Name</label
                 >
                 <input
                   v-model="details.className"
                   class="col-9 form-input"
                   type="text"
-                  placeholder="Название группы"
+                  placeholder="Name of group"
                 />
               </div>
 
               <!-- Course Code Input (Optional) -->
               <div class="form-group">
                 <label class=" col-3 form-label" for="input-example-1"
-                  >Код курса</label
+                  >Course code</label
                 >
                 <input
                   v-model="details.courseCode"
                   class="col-9 form-input"
                   type="text"
-                  placeholder="Код курса"
+                  placeholder="Course code"
                 />
               </div>
 
               <!-- Class Instructor Input -->
               <div class="form-group">
                 <label class=" col-3 form-label" for="input-example-1"
-                  >Руководитель</label
+                  >Group lead</label
                 >
                 <input
                   v-model="details.instructorName"
                   class="col-9 form-input"
                   type="text"
-                  placeholder="Имя руководителя"
+                  placeholder="Name of lead"
                 />
               </div>
 
               <!-- Class Meeting Location Input -->
               <div class="form-group">
                 <label class=" col-3 form-label" for="input-example-1"
-                  >Прохождение</label
+                  >Progress</label
                 >
                 <input
                   v-model="details.location"
@@ -83,7 +83,7 @@
               <!-- Class Meeting Time Input -->
               <div class="form-group">
                 <label class=" col-3 form-label" for="input-example-1"
-                  >Время</label
+                  >Time</label
                 >
                 <div id="time-group" class="col-9">
                   <flat-pickr
@@ -107,7 +107,7 @@
               <!-- Meeting Days -->
               <div class="form-group day-selector">
                 <label class=" col-3 form-label" for="input-example-1"
-                  >Дни курса</label
+                  >Course days</label
                 >
                 <div class="col-9 btn-group btn-group-block">
                   <button
@@ -151,20 +151,20 @@
               <!-- Website URL (Optional) -->
               <div class="form-group">
                 <label class=" col-3 form-label" for="input-example-1"
-                  >Веб-сайт
+                  >Web-site
                 </label>
                 <input
                   v-model="details.url"
                   class="col-9 form-input"
                   type="url"
-                  placeholder="веб-сайт руководителя"
+                  placeholder="Website"
                 />
               </div>
 
               <!-- Study Group Description (Optional-->
               <div class="form-group">
                 <label class=" col-3 form-label" for="input-example-1"
-                  >Описание</label
+                  >Description</label
                 >
                 <textarea
                   v-model="details.description"
@@ -183,7 +183,7 @@
                 class="btn btn-success"
                 @click="saveData"
               >
-                Сохранить <i class="fas fa-save ml-1 text-light"></i>
+                Save us<i class="fas fa-save ml-1 text-light"></i>
               </button>
             </div>
           </div>
@@ -191,15 +191,15 @@
         <div class="column col-6 col-xl-12">
           <div class="columns">
             <div class="group-details column col-10 col-mx-auto">
-              <h4>Активные коды приглашения</h4>
+              <h4>Active invite codes</h4>
               <table
                 v-if="!loading.codes"
                 class="table table-striped table-hover"
               >
                 <thead>
                   <tr>
-                    <th style="width: 95%;">Код</th>
-                    <th class="text-center">Отозвать?</th>
+                    <th style="width: 95%;">Code</th>
+                    <th class="text-center">Call back?</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -219,15 +219,15 @@
               <div v-else class="loading loading-lg"></div>
             </div>
             <div class="group-details column col-10  col-mx-auto">
-              <h4>Участники</h4>
+              <h4>Members</h4>
               <table
                 v-if="!loading.members"
                 class="table table-striped table-hover"
               >
                 <thead>
                   <tr>
-                    <th style="width: 95%;">Имя</th>
-                    <th class="text-center">Удалить?</th>
+                    <th style="width: 95%;">Name</th>
+                    <th class="text-center">Delete?</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -248,8 +248,8 @@
               <div v-else class="loading loading-lg"></div>
             </div>
             <div class="group-details column col-10  col-mx-auto">
-              <h4>Передать группу</h4>
-              <p id="info">Выберите другого участника группы</p>
+              <h4>Change group lead</h4>
+              <p id="info">Pick another group member</p>
               <div v-if="!loading.members" class="transfer-group input-group">
                 <select v-model="selected" class="form-select">
                   <option
@@ -263,7 +263,7 @@
                   class="btn btn-primary input-group-btn"
                   @click="changeOwner"
                 >
-                  Передать
+                  Transport to
                 </button>
               </div>
               <div v-else class="loading loading-lg"></div>
@@ -274,7 +274,7 @@
     </div>
   </div>
 
-  <h1 v-else-if="!isLoading && !userAuthorized">Ошибка загрузки</h1>
+  <h1 v-else-if="!isLoading && !userAuthorized">Loading error</h1>
   <div v-else class="loading loading-lg"></div>
 </template>
 
@@ -388,8 +388,8 @@ export default {
           this.$notify({
             group: 'save',
             type: 'success',
-            title: 'Изменения сохранены',
-            text: 'Все детали успешно сохранены',
+            title: 'Зміни збережені',
+            text: 'Все деталі були збережені',
           });
         });
     },

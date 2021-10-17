@@ -91,7 +91,7 @@ export default {
   },
   beforeRouteLeave(to, from, next) {
     if (!this.isSaved) {
-      if (confirm('Задача не сохранена. Вы действитель хотите уйти?')) {
+      if (confirm('Завдання не збережено. Ви хочете залишити цю сторінку?')) {
         next();
       }
     } else {
@@ -195,8 +195,8 @@ export default {
           this.$notify({
             group: 'notes',
             type: 'success',
-            title: 'Задача сохранена!',
-            text: 'Эта задача была сохранена.',
+            title: 'Завдання збережено!',
+            text: 'Це завдання було успішно збережено.',
           });
         });
     },

@@ -14,7 +14,7 @@
           })
         "
       >
-        Редакт.
+        Edit
       </button>
       <div
         v-if="info.creatorUID === $store.getters.uid"
@@ -30,21 +30,21 @@
     <span id="title">{{ info.title }}</span>
     <!-- Created -->
     <p id="created">
-      <i>Создан</i> {{ info.creationDate.toDate().toLocaleDateString() }}
+      <i>Create at</i> {{ info.creationDate.toDate().toLocaleDateString() }}
     </p>
     <!-- Last Updated -->
     <p id="modified">
-      <i>Обновлен</i> {{ calcDays(info.lastUpdated.toDate()) }}
+      <i>Updated</i> {{ calcDays(info.lastUpdated.toDate()) }}
     </p>
     <!-- Color status indicator based on deck rating -->
     <div
       id="status"
       class="tooltip"
       :data-tooltip="
-        'Понравилось: ' +
+        'Like: ' +
           this.info.upvotes.length +
           ' / ' +
-          ' Не понравилось: ' +
+          ' Dislike: ' +
           this.info.downvotes.length
       "
       :class="determineStatus()"
@@ -59,7 +59,7 @@
       />
       {{ info.creatorName }}
     </div>
-    <div id="studyBtn" @click="goStudy">Учить</div>
+    <div id="studyBtn" @click="goStudy">Learn</div>
   </div>
 </template>
 
@@ -97,9 +97,7 @@ export default {
       }
     },
     calcDays(date) {
-      const ruLocale = require('date-fns/locale/ru');
-      let locales = { locale: ruLocale };
-      return distanceInWordsToNow(date, locales) + ' назад';
+      return distanceInWordsToNow(date) + ' ago';
     },
   },
 };

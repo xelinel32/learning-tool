@@ -96,9 +96,9 @@ export default {
   computed: {
     getTitle() {
       if (this.editItem) {
-        return 'Изменить существующий ивент';
+        return 'Змінити цю подію';
       }
-      return 'Создание нового ивента';
+      return 'Створити нову подію';
     },
   },
   created() {

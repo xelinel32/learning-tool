@@ -48,7 +48,7 @@
               class="text-left c-pointer"
               @click="isSettingsActive = true"
             >
-              <i class="fas fa-cog" style="margin-right: 10px;"></i> Настройки
+              <i class="fas fa-cog" style="margin-right: 10px;"></i> Settings
             </a>
           </li>
 
@@ -56,7 +56,7 @@
           <li class="menu-item text-left">
             <a id="logOutButton" class="text-left" @click="logOut">
               <i class="fas fa-sign-out-alt" style="margin-right: 10px;"></i>
-              Выйти
+              Logout
             </a>
           </li>
         </ul>

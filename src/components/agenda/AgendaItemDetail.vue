@@ -7,7 +7,7 @@
       <div id="user-container">
         <h3>
           <i
-            >Создал:
+            >Create:
             <Avatar
               class="mr-2 ml-2"
               :user="{
@@ -21,16 +21,16 @@
     </div>
     <div id="date-container">
       <h3 id="date">
-        <i>Дата: </i>{{ formatDate(selectedItem.date.toDate()) }}
+        <i>Date: </i>{{ formatDate(selectedItem.date.toDate()) }}
       </h3>
       <h3 id="date">
-        <i>Время: </i>{{ formatTime(selectedItem.date.toDate()) }}
+        <i>Time: </i>{{ formatTime(selectedItem.date.toDate()) }}
       </h3>
       <h3 id="date">{{ getRemainingDays(selectedItem.date.toDate()) }}</h3>
     </div>
 
     <div class="divider bg-dark"></div>
-    <h4 class="text-left">Описание:</h4>
+    <h4 class="text-left">Description:</h4>
     <p id="description">{{ selectedItem.description }}</p>
   </div>
 </template>
@@ -53,11 +53,7 @@ export default {
   },
   methods: {
     getRemainingDays(date) {
-      const ruLocale = require('date-fns/locale/ru');
-      let locales = { locale: ruLocale };
-      return (
-        distanceInWordsToNow(date, locales, { addSuffix: false }) + ' назад'
-      );
+      return distanceInWordsToNow(date, { addSuffix: false }) + ' ago';
     },
     formatDate(date) {
       return format(date, 'M/DD/YYYY');

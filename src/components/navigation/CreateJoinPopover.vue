@@ -8,19 +8,19 @@
         class="btn btn-success btn-create"
         @click="$router.push('/dashboard/create')"
       >
-        Новая группа
+        New group
       </button>
 
       <div class="empty-action input-group input-inline group__code">
         <input
           v-model="inviteCode"
           class="form-input"
-          placeholder="Код приглашения"
+          placeholder="Invite code"
           type="text"
           @keydown.enter="fetchStudyGroup"
         />
         <button class="btn btn-error input-group-btn" @click="fetchStudyGroup">
-          Войти
+          Join
         </button>
       </div>
     </div>
@@ -36,16 +36,16 @@
       <div class="modal-container">
         <div class="modal-header">
           <div class="modal-title h5">
-            Курс - <span class="text-error">{{ inviteGroup.className }}</span>
+            Course - <span class="text-error">{{ inviteGroup.className }}</span>
           </div>
         </div>
         <div class="modal-body">
           <div class="h5 text-center text-dark">
-            Руководитель:
+            Course Lead:
             <span class="text-primary"> {{ inviteGroup.instructorName }}</span>
           </div>
           <div class="h5 text-center text-dark">
-            Участников - {{ inviteGroup.members.length }}
+            Members - {{ inviteGroup.members.length }}
           </div>
         </div>
         <div class="modal-footer">
@@ -54,14 +54,14 @@
             class="btn btn-link"
             @click="showModal = false"
           >
-            Отмена
+            Reject
           </button>
           <button
             class="btn btn-primary"
             :class="isLoading ? 'loading' : ''"
             @click="joinStudyGroup"
           >
-            Войти
+            Join
           </button>
         </div>
       </div>
@@ -133,9 +133,9 @@ export default {
                     this.$notify({
                       group: 'joinErrors',
                       type: 'warning',
-                      title: 'Невозможно присоединиться к учебной группе',
+                      title: 'Imposible connect to group',
                       text:
-                        'Вы уже являетесь участником ' +
+                        'You are member now' +
                         this.inviteGroup.className,
                     });
                   }
@@ -146,8 +146,8 @@ export default {
               this.$notify({
                 group: 'joinErrors',
                 type: 'error',
-                title: 'Группа не найдена',
-                text: 'Групп по такому коду не найдено.',
+                title: 'Group is not found',
+                text: 'Group is not found with this invite code',
               });
               // Reset input field after clicking join button
               this.inviteCode = '';
@@ -157,8 +157,8 @@ export default {
         this.$notify({
           group: 'joinErrors',
           type: 'error',
-          title: 'Неверный код',
-          text: 'Введите корректный код',
+          title: 'Incorrect code',
+          text: 'Enter correct code',
         });
       }
     },

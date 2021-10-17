@@ -2,7 +2,7 @@
   <div>
     <!-- Only show if there are public decks -->
     <div v-if="publicDecks.length > 0">
-      <h5>Публичные колекции вопросов</h5>
+      <h5>Публічні питання</h5>
       <div id="container">
         <div
           v-for="deck in publicDecks"
@@ -27,7 +27,7 @@
     </div>
     <!-- Only show if there are private decks -->
     <div v-if="privateDecks.length > 0">
-      <h5>Приватные колекции</h5>
+      <h5>Приватні колекції</h5>
       <div id="container">
         <div
           v-for="deck in privateDecks"
@@ -94,9 +94,6 @@ export default {
           this.publicDecks.push({ id: doc.id, selected: false, ...doc.data() });
         });
       })
-      .catch(function(error) {
-        // console.log('Error getting public decks: ', error);
-      });
 
     privateCollection
       .get()
@@ -109,9 +106,6 @@ export default {
           });
         });
       })
-      .catch(function(error) {
-        // console.log('Error getting private decks: ', error);
-      });
   },
   methods: {
     toggleSelected(deck) {

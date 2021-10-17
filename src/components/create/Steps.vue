@@ -2,28 +2,28 @@
   <!-- steps indicator -->
   <ul class="step">
     <li :class="active === 0 ? 'active' : ''" class="step-item">
-      <a class="tooltip" data-tooltip="Имя группы">Шаг 1</a>
+      <a class="tooltip" data-tooltip="Назва групи">Крок 1</a>
     </li>
     <li :class="active === 1 ? 'active' : ''" class="step-item">
-      <a class="tooltip" data-tooltip="Имя руководителя">Шаг 2</a>
+      <a class="tooltip" data-tooltip="Им'я керівника">Крок 2</a>
     </li>
     <li :class="active === 2 ? 'active' : ''" class="step-item">
-      <a class="tooltip" data-tooltip="Время курса">Шаг 3</a>
+      <a class="tooltip" data-tooltip="Час">Крок 3</a>
     </li>
     <li :class="active === 3 ? 'active' : ''" class="step-item">
-      <a class="tooltip" data-tooltip="Место проведения">Шаг 4</a>
+      <a class="tooltip" data-tooltip="Місце">Крок 4</a>
     </li>
     <li :class="active === 4 ? 'active' : ''" class="step-item">
-      <a class="tooltip" data-tooltip="Вебсайт руководителя">Шаг 5</a>
+      <a class="tooltip" data-tooltip="Веб-сайт керівника">Крок 5</a>
     </li>
     <li :class="active === 5 ? 'active' : ''" class="step-item">
-      <a class="tooltip" data-tooltip="Дополнительная информация">Шаг 6</a>
+      <a class="tooltip" data-tooltip="Додаткова інформація">Крок 6</a>
     </li>
     <li :class="active === 6 ? 'active' : ''" class="step-item">
-      <a class="tooltip" data-tooltip="Подтвердить создание">Шаг 7</a>
+      <a class="tooltip" data-tooltip="Підтвердіть створення">Крок 7</a>
     </li>
     <li :class="active === 7 ? 'active' : ''" class="step-item">
-      <a class="tooltip" data-tooltip="Выполнено">Выполнено</a>
+      <a class="tooltip" data-tooltip="Выполнено">Зроблено</a>
     </li>
   </ul>
 </template>

@@ -5,7 +5,7 @@
       <template slot="left">
         <button
           class="btn tooltip tooltip-right"
-          data-tooltip="Перетасовать"
+          data-tooltip="Перетосувати"
           :class="isShuffled ? 'btn-success' : 'btn-action'"
           @click="shuffleDeck"
         >
