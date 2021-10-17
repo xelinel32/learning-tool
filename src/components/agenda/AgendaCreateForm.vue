@@ -5,14 +5,14 @@
     <div class="horiz-tiles">
       <div class="tile t-left">
         <div class="tile-content text-left">
-          <div class="tile-title text-bold">Название</div>
+          <div class="tile-title text-bold">Назва</div>
           <div class="tile-subtitle">
             <input
               class="form-input"
               v-model="item.title"
               type="text"
               maxlength="26"
-              placeholder="Введите название"
+              placeholder="Введіть назву"
               @input="$emit('publish', item)"
             />
           </div>
@@ -21,7 +21,7 @@
 
       <div class="tile t-right">
         <div class="tile-content text-left">
-          <div class="tile-title text-bold">Дата / Время проведения</div>
+          <div class="tile-title text-bold">Дата / Час проведення</div>
           <div class="tile-subtitle date-time-container">
             <flat-pickr
               v-model="item.date"
@@ -36,7 +36,7 @@
 
     <div class="tile">
       <div class="tile-content text-left">
-        <div class="tile-title text-bold">Описание</div>
+        <div class="tile-title text-bold">Опис</div>
         <div class="tile-subtitle">
           <textarea
             class="form-input form__textarea"
@@ -44,7 +44,7 @@
             v-model="item.description"
             rows="4"
             name="description"
-            placeholder="Введите описание"
+            placeholder="Введіть опис події"
             @input="inputChanged"
           ></textarea>
         </div>

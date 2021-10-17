@@ -9,7 +9,7 @@
           Додати <i class="fas fa-plus ml-2"></i>
         </button>
       </template>
-      <template slot="center">Коллекция карточек</template>
+      <template slot="center">Колекція карток з тестами</template>
       <template slot="right">
         <div class="has-icon-left">
           <input
